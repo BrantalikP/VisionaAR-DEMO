@@ -51,6 +51,7 @@ class ViewController: UIViewController, ARSessionDelegate {
           config.environmentTexturing = .automatic
           config.frameSemantics = .personSegmentationWithDepth
           config.isCollaborationEnabled = true
+       
           
           arView.session.run(config)
       }

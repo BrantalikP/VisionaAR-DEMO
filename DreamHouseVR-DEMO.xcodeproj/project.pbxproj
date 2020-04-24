@@ -13,6 +13,7 @@
 		C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FDD18024532D70007C6E3B /* Main.storyboard */; };
 		C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FDD18324532D73007C6E3B /* Assets.xcassets */; };
 		C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FDD18524532D73007C6E3B /* LaunchScreen.storyboard */; };
+		C1FDD19324533F4C007C6E3B /* Utilities in Resources */ = {isa = PBXBuildFile; fileRef = C1FDD19224533F4C007C6E3B /* Utilities */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C1FDD18324532D73007C6E3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1FDD18624532D73007C6E3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1FDD18824532D73007C6E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1FDD19224533F4C007C6E3B /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utilities; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +59,39 @@
 			isa = PBXGroup;
 			children = (
 				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
-				C1FDD17C24532D70007C6E3B /* ViewController.swift */,
+				C1FDD18F24533E86007C6E3B /* Controller */,
 				C1FDD17E24532D70007C6E3B /* Experience.rcproject */,
-				C1FDD18024532D70007C6E3B /* Main.storyboard */,
+				C1FDD19124533EAA007C6E3B /* Resources */,
+				C1FDD19024533E97007C6E3B /* View */,
 				C1FDD18324532D73007C6E3B /* Assets.xcassets */,
+				C1FDD19224533F4C007C6E3B /* Utilities */,
 				C1FDD18524532D73007C6E3B /* LaunchScreen.storyboard */,
 				C1FDD18824532D73007C6E3B /* Info.plist */,
 			);
 			path = "DreamHouseVR-DEMO";
+			sourceTree = "<group>";
+		};
+		C1FDD18F24533E86007C6E3B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1FDD17C24532D70007C6E3B /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C1FDD19024533E97007C6E3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1FDD18024532D70007C6E3B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1FDD19124533EAA007C6E3B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */,
+				C1FDD19324533F4C007C6E3B /* Utilities in Resources */,
 				C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */,
 				C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */,
 			);
