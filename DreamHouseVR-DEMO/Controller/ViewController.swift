@@ -8,215 +8,148 @@
 
 
 import UIKit
+import FocusEntity
 import RealityKit
 import ARKit
+import MultipeerConnectivity
 
 
 
-class ViewController: UIViewController{
+class ViewController: UIViewController,ARSessionDelegate{
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var syncText: UILabel!
-    
-    var multipeerSession: MultipeerSession!
-    var sessionIDoBservation: NSKeyValueObservation?
-    
+    let focusSquare = FESquare()
+    var multipeerHelp = MultipeerHelper(
+        serviceName: "helper-test"
+    )
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setupARView()
-        
-        setupMultiPeerSession()
-        
+        setupMultipeer()
+        setupGestures()
         arView.session.delegate = self
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
-        arView.addGestureRecognizer(tapGestureRecognizer)
+        focusSquare.synchronization = nil
+        focusSquare.viewDelegate = arView
         
     }
     
+    func session(_: ARSession, didUpdate _: ARFrame) {
+        focusSquare.updateFocusEntity()
+    }
     
-    func setupARView(){
+    
+    
+    
+    func setupARView() {
         arView.automaticallyConfigureSession = false
+        arView.frame = view.bounds
+        arView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+//        self.arView.scene.synchronizationService = self.multipeerHelp.syncService
+//        
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal,.vertical]
         config.environmentTexturing = .automatic
         config.frameSemantics = .personSegmentationWithDepth
         config.isCollaborationEnabled = true
-        
         arView.session.run(config)
+        view.addSubview(arView)
     }
     
-    @objc func handleTap(recognizer: UITapGestureRecognizer){
-        
-        let location = recognizer.location(in: arView)
-        print("location")
-        print(location)
-        let results = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .horizontal)
-        
-        if let firstResult = results.first{
-            
-            let anchor = ARAnchor(name: "ship", transform: firstResult.worldTransform)
-            arView.session.add(anchor: anchor)
-            
-            
-        }else {
-            print("failed couldt find surface")
-        }
-    }
-    
-    
-    
-    func setupMultiPeerSession(){
-        sessionIDoBservation = observe(\.arView.session.identifier,options: [.new]) {
-            object,change in print("SeesionID changed to: \(change.newValue!)")
-            
-            guard let multipeerSession = self.multipeerSession else {return}
-            self.sendARSessionIDTo(peers: multipeerSession.connectedPeers)
-        }
-        
-        multipeerSession = MultipeerSession(serviceName: "multiuser-ar", receivedDataHandler: self.receivedData, peerJoinedHandler: self.peerJoined, peerLeftHandler: self.peerLeft, peerDiscoveredHandler: self.peerDiscovered)
-    }
-    
-    func placeObject(named entityName: String, for anchor: ARAnchor){
-        
-        let entity = try! ModelEntity.loadModel(named: entityName)
-        
-        entity.generateCollisionShapes(recursive: true)
-        arView.installGestures([.rotation, .translation], for: entity)
-        
-        let anchorEntity = AnchorEntity(anchor: anchor)
-        anchorEntity.addChild(entity)
-      
-        arView.scene.addAnchor(anchorEntity)
-    }
 }
 
-
-
-extension ViewController: ARSessionDelegate {
+extension ViewController: UIGestureRecognizerDelegate {
     
-    
-    
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        for anchor in anchors {
-            if let anchorName = anchor.name, anchorName == "ship"{
-                placeObject(named: anchorName,for: anchor)
-            }
-            
-            
-            if let _ = anchor as? ARParticipantAnchor {
-                print("Successfullz connect with another user!")
-               syncText.text = "Sync!"
-                
-//                let anchorEntity = AnchorEntity(anchor: participantAnchor)
-//                let mesh = MeshResource.generateSphere(radius: 0.03)
-//                let color = UIColor.red
-//                let material = SimpleMaterial(color: color, isMetallic: false)
-//                let coloredSphere = ModelEntity(mesh: mesh, materials: [material])
-//                anchorEntity.addChild(coloredSphere)
-//
-//                arView.scene.addAnchor(anchorEntity)
-            }
-        }
-    }
-}
-
-
-//MARK: - MultipeerSession
-extension ViewController {
-    
-    
-    
-    private func sendARSessionIDTo(peers: [PeerID]){
-        guard let multipeerSession = multipeerSession else {return}
-        let idString = arView.session.identifier.uuidString
-        let command = "SessionID:" + idString
-        if let commandData = command.data(using: .utf8){
-            multipeerSession.sendToPeers(commandData, reliably: true, peers: peers)
-        }
+    func setupGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.arView.addGestureRecognizer(tap)
     }
     
-    
-    func receivedData(_ data: Data, from peer: PeerID) {
-        guard let multipeerSession = multipeerSession else {return}
-        if let collaborationData = try? NSKeyedUnarchiver.unarchivedObject(ofClass: ARSession.CollaborationData.self, from: data) {
-            arView.session.update(with: collaborationData)
+    /// This function does sends a message "hello!" to all peers.
+    /// If you tap on an existing entity, it will run a scale up and down animation
+    /// If you tap on the floor without hitting any entities it will create a new Anchor
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        if let myData = "hello! from \(self.multipeerHelp.myPeerID.displayName)"
+            .data(using: .unicode)
+        {
+            multipeerHelp.sendToAllPeers(myData, reliably: true)
+        }
+        
+        guard let touchInView = sender?.location(in: self.arView) else {
             return
         }
-        // ...
-        let sessionIDCommandString = "SessionID:"
-        if let commandString = String(data: data, encoding: .utf8), commandString.starts(with: sessionIDCommandString) {
-            let newSessionID = String(commandString[commandString.index(commandString.startIndex,
-                                                                        offsetBy: sessionIDCommandString.count)...])
-            // If this peer was using a different session ID before, remove all its associated anchors.
-            // This will remove the old participant anchor and its geometry from the scene.
-            if let oldSessionID = multipeerSession.peerSessionIDs[peer] {
-                removeAllAnchorsOriginatingFromARSessionWithID(oldSessionID)
+        if let hitEntity = self.arView.entity(at: touchInView) {
+            // animate the Entity
+            hitEntity.runWithOwnership { (result) in
+                switch result {
+                case .success:
+                    let origTransform = Transform(scale: .one, rotation: .init(), translation: .zero)
+                    let largerTransform = Transform(scale: .init(repeating: 1.5), rotation: .init(), translation: .zero)
+                    hitEntity.move(to: largerTransform, relativeTo: hitEntity.parent, duration: 0.2)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        hitEntity.move(to: origTransform, relativeTo: hitEntity.parent, duration: 0.2)
+                    }
+                case .failure:
+                    print("could not get access to entity")
+                }
             }
-            
-            multipeerSession.peerSessionIDs[peer] = newSessionID
+        } else if let result = arView.raycast(
+            from: touchInView,
+            allowing: .existingPlaneGeometry, alignment: .horizontal
+        ).first {
+            self.addNewAnchor(transform: result.worldTransform)
         }
     }
     
-    
-    
-    func peerDiscovered(_ peer: PeerID) -> Bool {
-        guard let multipeerSession = multipeerSession else { return false }
+    /// Add a new anchor to the session
+    /// - Parameter transform: position in world space where the new anchor should be
+    func addNewAnchor(transform: simd_float4x4) {
+        let arAnchor = ARAnchor(name: "Cube Anchor", transform: transform)
+        let newAnchor = AnchorEntity(anchor: arAnchor)
         
-        if multipeerSession.connectedPeers.count > 4 {
-            // Do not accept more than four users in the experience.
-            print("A fifth peer wants to join the experience.\nThis app is limited to four users.")
-            return false
-        } else {
-            return true
-        }
+        let cubeModel = ModelEntity(
+            mesh: .generateBox(size: 0.1),
+            materials: [SimpleMaterial(color: .red, isMetallic: false)]
+        )
+        cubeModel.generateCollisionShapes(recursive: false)
+        
+        newAnchor.addChild(cubeModel)
+        
+        newAnchor.synchronization?.ownershipTransferMode = .autoAccept
+        
+        newAnchor.anchoring = AnchoringComponent(arAnchor)
+        arView.installGestures([.rotation, .translation], for: cubeModel)
+        arView.scene.addAnchor(newAnchor)
+        arView.session.add(anchor: arAnchor)
+        
     }
-    /// - Tag: PeerJoined
-    func peerJoined(_ peer: PeerID) {
-        print("""
-             A peer wants to join the experience.
-             Hold the phones next to each other.
-             """)
-        // Provide your session ID to the new user so they can keep track of your anchors.
-        sendARSessionIDTo(peers: [peer])
+}
+
+extension ViewController: MultipeerHelperDelegate {
+  func setupMultipeer() {
+    multipeerHelp = MultipeerHelper(
+      serviceName: "helper-test",
+      sessionType: .both,
+      delegate: self
+    )
+
+    // MARK: - Setting RealityKit Synchronization
+
+    guard let syncService = multipeerHelp.syncService else {
+      fatalError("could not create multipeerHelp.syncService")
     }
-    
-    func peerLeft(_ peer: PeerID) {
-        guard let multipeerSession = multipeerSession else {return}
-        print("player left the game")
-        // Remove all ARAnchors associated with the peer that just left the experience.
-        if let sessionID = multipeerSession.peerSessionIDs[peer] {
-            removeAllAnchorsOriginatingFromARSessionWithID(sessionID)
-            multipeerSession.peerSessionIDs.removeValue(forKey: peer)
-        }
-    }
-    
-    private func removeAllAnchorsOriginatingFromARSessionWithID(_ identifier: String) {
-        guard let frame = arView.session.currentFrame else { return }
-        for anchor in frame.anchors {
-            guard let anchorSessionID = anchor.sessionIdentifier else { continue }
-            if anchorSessionID.uuidString == identifier {
-                arView.session.remove(anchor: anchor)
-            }
-        }
-    }
-    
-    func session(_ session: ARSession, didOutputCollaborationData data: ARSession.CollaborationData) {
-        guard let multipeerSession = multipeerSession else { return }
-        if !multipeerSession.connectedPeers.isEmpty {
-            guard let encodedData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: true)
-                else { fatalError("Unexpectedly failed to encode collaboration data.") }
-            // Use reliable mode if the data is critical, and unreliable mode if the data is optional.
-            
-            let dataIsCritical = data.priority == .critical
-            multipeerSession.sendToAllPeers(encodedData, reliably: dataIsCritical)
-        } else {
-            print("Deferred sending collaboration to later because there are no peers.")
-        }
-    }
-    
+    arView.scene.synchronizationService = syncService
+  }
+
+  func receivedData(_ data: Data, _ peer: MCPeerID) {
+    print(String(data: data, encoding: .unicode) ?? "Data is not a unicode string")
+  }
+
+  func peerJoined(_ peer: MCPeerID) {
+    print("new peer has joined: \(peer.displayName)")
+  }
 }

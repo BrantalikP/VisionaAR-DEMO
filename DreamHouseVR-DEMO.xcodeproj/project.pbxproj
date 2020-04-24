@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C130B4BF245362BC0078E3C6 /* MultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B4BE245362BC0078E3C6 /* MultipeerSession.swift */; };
 		C130B4C1245363C40078E3C6 /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C130B4C0245363C40078E3C6 /* sofa.usdz */; };
 		C1AB58D024536DF800534EB6 /* ship.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AB58CF24536DF800534EB6 /* ship.usdz */; };
+		C1D35E1024537A8000263643 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* FocusEntity */; };
+		C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */; };
+		C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */; };
+		C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E242453838F00263643 /* MultipeerHelper.swift */; };
 		C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17A24532D70007C6E3B /* AppDelegate.swift */; };
 		C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17C24532D70007C6E3B /* ViewController.swift */; };
 		C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17E24532D70007C6E3B /* Experience.rcproject */; };
@@ -20,9 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C130B4BE245362BC0078E3C6 /* MultipeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerSession.swift; sourceTree = "<group>"; };
 		C130B4C0245363C40078E3C6 /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
 		C1AB58CF24536DF800534EB6 /* ship.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = ship.usdz; sourceTree = "<group>"; };
+		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
+		C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelperDelegate.swift; sourceTree = "<group>"; };
+		C1D35E242453838F00263643 /* MultipeerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelper.swift; sourceTree = "<group>"; };
 		C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DreamHouseVR-DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FDD17A24532D70007C6E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FDD17C24532D70007C6E3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,18 +44,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1D35E1024537A8000263643 /* FocusEntity in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C130B4BB2453616A0078E3C6 /* MultipeerSession */ = {
+		C1D35E212453837500263643 /* MultipeerHelper */ = {
 			isa = PBXGroup;
 			children = (
-				C130B4BE245362BC0078E3C6 /* MultipeerSession.swift */,
+				C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */,
+				C1D35E242453838F00263643 /* MultipeerHelper.swift */,
+				C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */,
 			);
-			path = MultipeerSession;
+			path = MultipeerHelper;
 			sourceTree = "<group>";
 		};
 		C1FDD16E24532D70007C6E3B = {
@@ -72,7 +80,7 @@
 		C1FDD17924532D70007C6E3B /* DreamHouseVR-DEMO */ = {
 			isa = PBXGroup;
 			children = (
-				C130B4BB2453616A0078E3C6 /* MultipeerSession */,
+				C1D35E212453837500263643 /* MultipeerHelper */,
 				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
 				C1FDD18F24533E86007C6E3B /* Controller */,
 				C1FDD17E24532D70007C6E3B /* Experience.rcproject */,
@@ -128,6 +136,7 @@
 			);
 			name = "DreamHouseVR-DEMO";
 			packageProductDependencies = (
+				C1D35E0F24537A8000263643 /* FocusEntity */,
 			);
 			productName = "DreamHouseVR-DEMO";
 			productReference = C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */;
@@ -158,6 +167,7 @@
 			);
 			mainGroup = C1FDD16E24532D70007C6E3B;
 			packageReferences = (
+				C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */,
 			);
 			productRefGroup = C1FDD17824532D70007C6E3B /* Products */;
 			projectDirPath = "";
@@ -189,10 +199,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C130B4BF245362BC0078E3C6 /* MultipeerSession.swift in Sources */,
 				C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */,
+				C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */,
 				C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */,
+				C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
+				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +402,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxxfrazer/FocusEntity.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1D35E0F24537A8000263643 /* FocusEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */;
+			productName = FocusEntity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C1FDD16F24532D70007C6E3B /* Project object */;
 }
