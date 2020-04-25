@@ -1,10 +1,4 @@
-//
-//  HasSynchronization+Extensions.swift
-//  MultipeerHelper+Example
-//
-//  Created by Max Cobb on 12/8/19.
-//  Copyright © 2019 Max Cobb. All rights reserved.
-//
+
 
 import RealityKit
 

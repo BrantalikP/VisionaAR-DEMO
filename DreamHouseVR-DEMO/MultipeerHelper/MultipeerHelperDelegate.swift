@@ -1,9 +1,3 @@
-//
-//  MultipeerHelperDelegate.swift
-//
-//
-//  Created by Max Cobb on 11/22/19.
-//
 
 import MultipeerConnectivity
 
