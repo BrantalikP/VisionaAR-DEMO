@@ -19,6 +19,7 @@ class ViewController: UIViewController,ARSessionDelegate{
     
     @IBOutlet var arView: ARView!
     
+    
     @IBOutlet weak var syncText: UITextField!
     let focusSquare = FESquare()
     var multipeerHelp = MultipeerHelper(
@@ -43,6 +44,24 @@ class ViewController: UIViewController,ARSessionDelegate{
         focusSquare.updateFocusEntity()
     }
     
+        func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+           
+//            for anchor in anchors {
+//                if let anchorName = anchor.name, anchorName == "ship"{
+//                    addNewAnchor(named: anchorName,for: anchor)
+//                }
+//
+//            }
+            
+            for anchor in anchors {
+            if let _ = anchor as? ARParticipantAnchor {
+                        print("Successfully connect with another user!")
+                        syncText.text = "Sync!"
+                       
+                    }
+            }
+        }
+    
     
     
     
@@ -57,7 +76,7 @@ class ViewController: UIViewController,ARSessionDelegate{
         config.frameSemantics = .personSegmentationWithDepth
         config.isCollaborationEnabled = true
         arView.session.run(config)
-        view.addSubview(arView)
+    
     }
     
 }
@@ -94,9 +113,9 @@ extension ViewController: UIGestureRecognizerDelegate {
             from: touchInView,
             allowing: .existingPlaneGeometry, alignment: .horizontal
         ).first {
-            let anchor = ARAnchor(name: "ship", transform: result.worldTransform)
+            let anchor = ARAnchor(name: "sofa", transform: result.worldTransform)
 //            arView.session.add(anchor: anchor)
-            addNewAnchor(named: "ship", for: anchor)
+            addNewAnchor(named: "sofa", for: anchor)
         }
     }
     
@@ -109,40 +128,50 @@ extension ViewController: UIGestureRecognizerDelegate {
         
         
         let entity = try! ModelEntity.loadModel(named: entityName)
-        
+
         entity.generateCollisionShapes(recursive: true)
-        
-        
-        
+
+
+
         let anchorEntity = AnchorEntity(anchor: anchor)
-        
+
         anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
-        
+
         anchorEntity.addChild(entity)
-        
+
         anchorEntity.anchoring = AnchoringComponent(anchor)
         anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
         arView.installGestures([.rotation, .translation], for: entity)
         arView.scene.addAnchor(anchorEntity)
         arView.session.add(anchor: anchor)
-        //        let arAnchor = ARAnchor(name: "Cube Anchor", transform: transform)
-        //        let newAnchor = AnchorEntity(anchor: arAnchor)
-        //
-        //        let cubeModel = ModelEntity(
-        //            mesh: .generateBox(size: 0.1),
-        //            materials: [SimpleMaterial(color: .red, isMetallic: false)]
-        //        )
-        //        cubeModel.generateCollisionShapes(recursive: false)
-        //
-        //        newAnchor.addChild(cubeModel)
-        //
-        //        newAnchor.synchronization?.ownershipTransferMode = .autoAccept
-        //
-        //        newAnchor.anchoring = AnchoringComponent(arAnchor)
-        //        arView.installGestures([.rotation, .translation], for: cubeModel)
-        //        arView.scene.addAnchor(newAnchor)
-        //        arView.session.add(anchor: arAnchor)
+
+//
+//        addTestCube(for: anchor)
         
+        
+
+        
+    }
+    
+    func addTestCube(for anchor: ARAnchor){
+        
+        let name = self.multipeerHelp.myPeerID.displayName
+      let newAnchor = AnchorEntity(anchor: anchor)
+        let color = name == "Lenka’s iPad" ? UIColor.blue : UIColor.red
+        let cubeModel = ModelEntity(
+            mesh: .generateBox(size: 0.1),
+            materials: [SimpleMaterial(color: color, isMetallic: false)]
+        )
+        cubeModel.generateCollisionShapes(recursive: false)
+
+        newAnchor.addChild(cubeModel)
+
+        newAnchor.synchronization?.ownershipTransferMode = .autoAccept
+
+        newAnchor.anchoring = AnchoringComponent(anchor)
+        arView.installGestures([.rotation, .translation], for: cubeModel)
+        arView.scene.addAnchor(newAnchor)
+        arView.session.add(anchor: anchor)
     }
 }
 
@@ -168,19 +197,17 @@ extension ViewController: MultipeerHelperDelegate {
     
     func peerJoined(_ peer: MCPeerID) {
         print("new peer has joined: \(peer.displayName)")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.syncText.text = "Sync!"
-                 }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+//            self.syncText.text = "Sync!"
+//                 }
         
     }
     
-//    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-//        print("heereeeeeeee")
-//        for anchor in anchors {
-//            if let anchorName = anchor.name, anchorName == "ship"{
-//                addNewAnchor(named: anchorName,for: anchor)
-//            }
-//
-//        }
-//    }
+    func peerLeft(_ peer: MCPeerID) {
+       DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                   self.syncText.text = "Async!"
+                        }
+    }
+    
+
 }

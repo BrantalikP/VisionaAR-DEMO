@@ -97,7 +97,6 @@
 		C1FDD18F24533E86007C6E3B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C130B4C0245363C40078E3C6 /* sofa.usdz */,
 				C1FDD17C24532D70007C6E3B /* ViewController.swift */,
 			);
 			path = Controller;
@@ -114,6 +113,7 @@
 		C1FDD19124533EAA007C6E3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C130B4C0245363C40078E3C6 /* sofa.usdz */,
 				C1AB58CF24536DF800534EB6 /* ship.usdz */,
 			);
 			path = Resources;
