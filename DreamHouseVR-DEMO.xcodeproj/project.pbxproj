@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		7FCA3AD2A40D44F74C27FF03 /* Pods_DreamHouseVR_DEMO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BBE459E22D137A84D89768 /* Pods_DreamHouseVR_DEMO.framework */; };
-		C130B4C1245363C40078E3C6 /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C130B4C0245363C40078E3C6 /* sofa.usdz */; };
 		C19BF65424544353003188CC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65324544353003188CC /* LibraryViewController.swift */; };
-		C19BF659245449EA003188CC /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF658245449EA003188CC /* Options.swift */; };
+		C19BF65C24549478003188CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65B24549478003188CC /* Constants.swift */; };
+		C19BF65F2454A227003188CC /* ModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */; };
+		C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19BF65E2454A227003188CC /* ModelCollectionViewCell.xib */; };
+		C19BF6622454AA55003188CC /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C19BF6612454AA55003188CC /* sofa.usdz */; };
 		C1AB58D024536DF800534EB6 /* ship.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AB58CF24536DF800534EB6 /* ship.usdz */; };
-		C1D35E1024537A8000263643 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* SwiftPackageProductDependency */; };
+		C1D35E1024537A8000263643 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* FocusEntity */; };
 		C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */; };
 		C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */; };
 		C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E242453838F00263643 /* MultipeerHelper.swift */; };
@@ -27,9 +29,11 @@
 
 /* Begin PBXFileReference section */
 		BAE7B9B861ACA0EE31900862 /* Pods-DreamHouseVR-DEMO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamHouseVR-DEMO.debug.xcconfig"; path = "Target Support Files/Pods-DreamHouseVR-DEMO/Pods-DreamHouseVR-DEMO.debug.xcconfig"; sourceTree = "<group>"; };
-		C130B4C0245363C40078E3C6 /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
 		C19BF65324544353003188CC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		C19BF658245449EA003188CC /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		C19BF65B24549478003188CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollectionViewCell.swift; sourceTree = "<group>"; };
+		C19BF65E2454A227003188CC /* ModelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelCollectionViewCell.xib; sourceTree = "<group>"; };
+		C19BF6612454AA55003188CC /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
 		C1AB58CF24536DF800534EB6 /* ship.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = ship.usdz; sourceTree = "<group>"; };
 		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
 		C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelperDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1D35E1024537A8000263643 /* BuildFile in Frameworks */,
+				C1D35E1024537A8000263643 /* FocusEntity in Frameworks */,
 				7FCA3AD2A40D44F74C27FF03 /* Pods_DreamHouseVR_DEMO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,9 +67,16 @@
 		C19BF6572454495B003188CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C19BF658245449EA003188CC /* Options.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C19BF65A24549456003188CC /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C19BF65B24549478003188CC /* Constants.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		C1D35E212453837500263643 /* MultipeerHelper */ = {
@@ -99,6 +110,7 @@
 		C1FDD17924532D70007C6E3B /* DreamHouseVR-DEMO */ = {
 			isa = PBXGroup;
 			children = (
+				C19BF65A24549456003188CC /* Tools */,
 				C19BF6572454495B003188CC /* Models */,
 				C1D35E212453837500263643 /* MultipeerHelper */,
 				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
@@ -127,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				C1FDD18024532D70007C6E3B /* Main.storyboard */,
+				C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */,
+				C19BF65E2454A227003188CC /* ModelCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,7 +148,7 @@
 		C1FDD19124533EAA007C6E3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C130B4C0245363C40078E3C6 /* sofa.usdz */,
+				C19BF6612454AA55003188CC /* sofa.usdz */,
 				C1AB58CF24536DF800534EB6 /* ship.usdz */,
 			);
 			path = Resources;
@@ -146,7 +160,6 @@
 				BAE7B9B861ACA0EE31900862 /* Pods-DreamHouseVR-DEMO.debug.xcconfig */,
 				D8A160BF8ABDE97976CADBD9 /* Pods-DreamHouseVR-DEMO.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -177,7 +190,7 @@
 			);
 			name = "DreamHouseVR-DEMO";
 			packageProductDependencies = (
-				C1D35E0F24537A8000263643 /* SwiftPackageProductDependency */,
+				C1D35E0F24537A8000263643 /* FocusEntity */,
 			);
 			productName = "DreamHouseVR-DEMO";
 			productReference = C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */;
@@ -208,7 +221,7 @@
 			);
 			mainGroup = C1FDD16E24532D70007C6E3B;
 			packageReferences = (
-				C1D35E0E24537A8000263643 /* RemoteSwiftPackageReference */,
+				C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */,
 			);
 			productRefGroup = C1FDD17824532D70007C6E3B /* Products */;
 			projectDirPath = "";
@@ -226,10 +239,11 @@
 			files = (
 				C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */,
 				C1AB58D024536DF800534EB6 /* ship.usdz in Resources */,
+				C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */,
+				C19BF6622454AA55003188CC /* sofa.usdz in Resources */,
 				C1FDD19324533F4C007C6E3B /* Utilities in Resources */,
 				C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */,
 				C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */,
-				C130B4C1245363C40078E3C6 /* sofa.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +298,13 @@
 			files = (
 				C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */,
 				C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */,
+				C19BF65F2454A227003188CC /* ModelCollectionViewCell.swift in Sources */,
 				C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */,
 				C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */,
-				C19BF659245449EA003188CC /* Options.swift in Sources */,
 				C19BF65424544353003188CC /* LibraryViewController.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
+				C19BF65C24549478003188CC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +506,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C1D35E0E24537A8000263643 /* RemoteSwiftPackageReference */ = {
+		C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/maxxfrazer/FocusEntity.git";
 			requirement = {
@@ -502,9 +517,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C1D35E0F24537A8000263643 /* SwiftPackageProductDependency */ = {
+		C1D35E0F24537A8000263643 /* FocusEntity */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C1D35E0E24537A8000263643 /* RemoteSwiftPackageReference */;
+			package = C1D35E0E24537A8000263643 /* XCRemoteSwiftPackageReference "FocusEntity" */;
 			productName = FocusEntity;
 		};
 /* End XCSwiftPackageProductDependency section */

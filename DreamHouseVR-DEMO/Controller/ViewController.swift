@@ -68,6 +68,14 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         
         
         for anchor in anchors {
+            
+            for anchor in anchors {
+                if let anchorName = anchor.name {
+                    addNewAnchor(named: anchorName,for: anchor)
+                    
+                }}
+            
+            
             if let _ = anchor as? ARParticipantAnchor {
                 print("Successfully connect with another user!")
                 syncText.text = "Sync!"
@@ -112,7 +120,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     
     func updateItem(name: String) {
-        self.selectedItem = name
+        
+      
+        if name != "cube" {
+            self.selectedItem = name
+        }
+        
         preloadModel()
         
         
@@ -124,7 +137,8 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         if let currentItem = selectedItem {
             preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
             
-            preloadedEntity!.generateCollisionShapes(recursive: false)
+            preloadedEntity!.generateCollisionShapes(recursive: true)
+
             arView.installGestures([.rotation, .translation], for: preloadedEntity! as! HasCollision)
             
         }
@@ -148,7 +162,10 @@ extension ViewController: UIGestureRecognizerDelegate {
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        if let myData = "hello! from \(self.multipeerHelp.myPeerID.displayName)"
+        
+        //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
+        let data = self.multipeerHelp.myPeerID.displayName
+        if let myData = data
             .data(using: .unicode)
         {
             multipeerHelp.sendToAllPeers(myData, reliably: true)
@@ -158,7 +175,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             return
         }
         if let hitEntity = self.arView.entity(at: touchInView) {
-            // animate the Entity
+            // hit the Entity
             hitEntity.runWithOwnership { (result) in
                 switch result {
                 case .success:
@@ -172,8 +189,8 @@ extension ViewController: UIGestureRecognizerDelegate {
             allowing: .existingPlaneGeometry, alignment: .horizontal
         ).first {
             let anchor = ARAnchor(name: selectedItem ?? "cube", transform: result.worldTransform)
-            //            arView.session.add(anchor: anchor)
-            addNewAnchor(named: selectedItem ?? "cube", for: anchor)
+            arView.session.add(anchor: anchor)
+            
         }
     }
     
@@ -181,26 +198,39 @@ extension ViewController: UIGestureRecognizerDelegate {
     /// - Parameter transform: position in world space where the new anchor should be
     func addNewAnchor(named entityName: String, for anchor: ARAnchor) {
         
-       
-        if entityName == "cube" {
+//
+//        let otherPeer = self.multipeerHelp.connectedPeers.first?.displayName
+//        print(otherPeer)
+//
+        
+        if entityName == "cube"  {
             addTestCube(for: anchor)
         }
         else {
-        
+            
             
             
             let anchorEntity = AnchorEntity(anchor: anchor)
             
             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
             
-            anchorEntity.addChild(preloadedEntity!)
+            if preloadedEntity == nil {
+                let entity = try! ModelEntity.loadModel(named: entityName)
+                
+                entity.generateCollisionShapes(recursive: true)
+                arView.installGestures([.rotation, .translation], for: entity)
+
+            } else {
+                anchorEntity.addChild(preloadedEntity!)
+                
+                anchorEntity.anchoring = AnchoringComponent(anchor)
+                anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+                
+                arView.scene.addAnchor(anchorEntity)
+                selectedItem = nil
+            }
             
-            anchorEntity.anchoring = AnchoringComponent(anchor)
-            anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
             
-            arView.scene.addAnchor(anchorEntity)
-            arView.session.add(anchor: anchor)
-            selectedItem = nil
             
             
         }
@@ -252,7 +282,17 @@ extension ViewController: MultipeerHelperDelegate {
     }
     
     func receivedData(_ data: Data, _ peer: MCPeerID) {
-        print(String(data: data, encoding: .unicode) ?? "Data is not a unicode string")
+        print("Recieved Data")
+        
+        if let recievedData = String(data: data, encoding: .unicode) {
+            print(recievedData)
+            
+            //            if recievedData != "cube" && recievedData != selectedItem {
+            //                preloadedEntity = try! ModelEntity.loadModel(named: String(recievedData))
+            //            }
+            
+        }
+        
     }
     
     func peerJoined(_ peer: MCPeerID) {
@@ -264,9 +304,9 @@ extension ViewController: MultipeerHelperDelegate {
     }
     
     func peerLeft(_ peer: MCPeerID) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.syncText.text = "Async!"
-        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        //            self.syncText.text = "Async!"
+        //        }
     }
     
     
