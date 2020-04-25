@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C130B4C1245363C40078E3C6 /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C130B4C0245363C40078E3C6 /* sofa.usdz */; };
+		C19BF65424544353003188CC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65324544353003188CC /* LibraryViewController.swift */; };
+		C19BF659245449EA003188CC /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF658245449EA003188CC /* Options.swift */; };
 		C1AB58D024536DF800534EB6 /* ship.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AB58CF24536DF800534EB6 /* ship.usdz */; };
 		C1D35E1024537A8000263643 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* FocusEntity */; };
 		C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		C130B4C0245363C40078E3C6 /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
+		C19BF65324544353003188CC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		C19BF658245449EA003188CC /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		C1AB58CF24536DF800534EB6 /* ship.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = ship.usdz; sourceTree = "<group>"; };
 		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
 		C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelperDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C19BF6572454495B003188CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C19BF658245449EA003188CC /* Options.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C1D35E212453837500263643 /* MultipeerHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		C1FDD17924532D70007C6E3B /* DreamHouseVR-DEMO */ = {
 			isa = PBXGroup;
 			children = (
+				C19BF6572454495B003188CC /* Models */,
 				C1D35E212453837500263643 /* MultipeerHelper */,
 				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
 				C1FDD18F24533E86007C6E3B /* Controller */,
@@ -98,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FDD17C24532D70007C6E3B /* ViewController.swift */,
+				C19BF65324544353003188CC /* LibraryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -203,6 +217,8 @@
 				C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */,
 				C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */,
 				C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */,
+				C19BF659245449EA003188CC /* Options.swift in Sources */,
+				C19BF65424544353003188CC /* LibraryViewController.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
 			);

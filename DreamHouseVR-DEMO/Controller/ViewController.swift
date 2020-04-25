@@ -18,14 +18,14 @@ import MultipeerConnectivity
 class ViewController: UIViewController,ARSessionDelegate{
     
     @IBOutlet var arView: ARView!
-    
-    
     @IBOutlet weak var syncText: UITextField!
     let focusSquare = FESquare()
     var multipeerHelp = MultipeerHelper(
         serviceName: "helper-test"
     )
     
+   var selectedItem: String = "ship"
+ 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -79,8 +79,24 @@ class ViewController: UIViewController,ARSessionDelegate{
     
     }
     
+    
+    @IBAction func libraryButtonPressed(_ sender: UIButton) {
+         performSegue(withIdentifier: "goToLibrary", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToLibrary"{
+            let destionationVC = segue.destination as! LibraryViewController
+           
+        }
+    }
+    
+    
 }
 
+
+//MARK: - gesture handler
 extension ViewController: UIGestureRecognizerDelegate {
     
     func setupGestures() {
@@ -113,9 +129,9 @@ extension ViewController: UIGestureRecognizerDelegate {
             from: touchInView,
             allowing: .existingPlaneGeometry, alignment: .horizontal
         ).first {
-            let anchor = ARAnchor(name: "sofa", transform: result.worldTransform)
+            let anchor = ARAnchor(name: selectedItem, transform: result.worldTransform)
 //            arView.session.add(anchor: anchor)
-            addNewAnchor(named: "sofa", for: anchor)
+            addNewAnchor(named: selectedItem, for: anchor)
         }
     }
     
@@ -123,31 +139,29 @@ extension ViewController: UIGestureRecognizerDelegate {
     /// - Parameter transform: position in world space where the new anchor should be
     func addNewAnchor(named entityName: String, for anchor: ARAnchor) {
         
-        
-        
-        
-        
-        let entity = try! ModelEntity.loadModel(named: entityName)
+        print(selectedItem)
+        if entityName == "cube" {
+            addTestCube(for: anchor)
+        }
+        else {
+            let entity = try! ModelEntity.loadModel(named: entityName)
 
-        entity.generateCollisionShapes(recursive: true)
+             entity.generateCollisionShapes(recursive: true)
 
 
 
-        let anchorEntity = AnchorEntity(anchor: anchor)
+             let anchorEntity = AnchorEntity(anchor: anchor)
 
-        anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
 
-        anchorEntity.addChild(entity)
+             anchorEntity.addChild(entity)
 
-        anchorEntity.anchoring = AnchoringComponent(anchor)
-        anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
-        arView.installGestures([.rotation, .translation], for: entity)
-        arView.scene.addAnchor(anchorEntity)
-        arView.session.add(anchor: anchor)
-
-//
-//        addTestCube(for: anchor)
-        
+             anchorEntity.anchoring = AnchoringComponent(anchor)
+             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+             arView.installGestures([.rotation, .translation], for: entity)
+             arView.scene.addAnchor(anchorEntity)
+             arView.session.add(anchor: anchor)
+        }
         
 
         
@@ -175,6 +189,8 @@ extension ViewController: UIGestureRecognizerDelegate {
     }
 }
 
+
+//MARK: - MultipeerSetup and Delegate
 extension ViewController: MultipeerHelperDelegate {
     func setupMultipeer() {
         multipeerHelp = MultipeerHelper(
