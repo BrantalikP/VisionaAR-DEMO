@@ -11,8 +11,11 @@ import UIKit
 
 class LibraryViewController: UIViewController {
     @IBOutlet var background: UIView!
+  
     
-    var viewController = ViewController()
+    var mainController = ViewController()
+    
+    var delegate: DataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +27,8 @@ class LibraryViewController: UIViewController {
     }
     
     @IBAction func closeLibrary(_ sender: UIButton) {
-       
+      
+        delegate?.updateItem(name:"ship")
         dismiss(animated: true, completion: nil)
     }
     

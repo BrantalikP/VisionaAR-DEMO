@@ -13,9 +13,14 @@ import RealityKit
 import ARKit
 import MultipeerConnectivity
 
+protocol DataDelegate {
+    func updateItem(name: String)
+}
 
 
-class ViewController: UIViewController,ARSessionDelegate{
+class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
+   
+     
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var syncText: UITextField!
@@ -24,12 +29,17 @@ class ViewController: UIViewController,ARSessionDelegate{
         serviceName: "helper-test"
     )
     
-   var selectedItem: String = "ship"
- 
+    
+    public var selectedItem: String = "ship"
+    var preloadedEntity: Entity?
+   
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+       
+        preloadModel()
+     
         setupARView()
         setupMultipeer()
         setupGestures()
@@ -42,6 +52,7 @@ class ViewController: UIViewController,ARSessionDelegate{
     
     func session(_: ARSession, didUpdate _: ARFrame) {
         focusSquare.updateFocusEntity()
+        
     }
     
         func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
@@ -52,6 +63,7 @@ class ViewController: UIViewController,ARSessionDelegate{
 //                }
 //
 //            }
+          
             
             for anchor in anchors {
             if let _ = anchor as? ARParticipantAnchor {
@@ -69,7 +81,7 @@ class ViewController: UIViewController,ARSessionDelegate{
         arView.automaticallyConfigureSession = false
         arView.frame = view.bounds
         arView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+       
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal,.vertical]
         config.environmentTexturing = .automatic
@@ -88,9 +100,29 @@ class ViewController: UIViewController,ARSessionDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToLibrary"{
             let destionationVC = segue.destination as! LibraryViewController
-           
+            destionationVC.delegate = self
+
         }
     }
+    
+  
+    
+    func updateItem(name: String) {
+            self.selectedItem = name
+            preloadModel()
+       }
+       
+       func preloadModel(){
+        preloadedEntity = try! ModelEntity.loadModel(named: selectedItem)
+        
+        preloadedEntity!.generateCollisionShapes(recursive: false)
+        arView.installGestures([.rotation, .translation], for: preloadedEntity! as! HasCollision)
+                         
+             
+        
+            }
+    
+  
     
     
 }
@@ -144,24 +176,29 @@ extension ViewController: UIGestureRecognizerDelegate {
             addTestCube(for: anchor)
         }
         else {
-            let entity = try! ModelEntity.loadModel(named: entityName)
-
-             entity.generateCollisionShapes(recursive: true)
-
-
+//            let entity = try! ModelEntity.loadModel(named: entityName)
+//
+//            entity!.generateCollisionShapes(recursive: false)
+//
+           
 
              let anchorEntity = AnchorEntity(anchor: anchor)
 
              anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
 
-             anchorEntity.addChild(entity)
+             anchorEntity.addChild(preloadedEntity!)
 
              anchorEntity.anchoring = AnchoringComponent(anchor)
              anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
-             arView.installGestures([.rotation, .translation], for: entity)
+            
              arView.scene.addAnchor(anchorEntity)
              arView.session.add(anchor: anchor)
+         
+//
+          
         }
+        
+     
         
 
         

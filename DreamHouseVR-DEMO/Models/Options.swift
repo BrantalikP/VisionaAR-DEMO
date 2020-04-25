@@ -9,10 +9,10 @@
 import UIKit
 
 
-class Options {
-    var selectedItem: String
-    
-    init(selectedItem: String) {
-        self.selectedItem = selectedItem
-    }
+import Foundation
+import RealmSwift
+
+class Options: Object {
+    @objc dynamic var selectedItem: String = "ship"
+
 }
