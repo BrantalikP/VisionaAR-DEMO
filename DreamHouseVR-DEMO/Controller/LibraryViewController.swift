@@ -15,20 +15,24 @@ class LibraryViewController: UIViewController {
     
     var mainController = ViewController()
     
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     var delegate: DataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         background.backgroundColor = UIColor.red
-        
+         
      
-        
+        loader.hidesWhenStopped = true
         
     }
     
     @IBAction func closeLibrary(_ sender: UIButton) {
       
+      
+        loader.startAnimating()
         delegate?.updateItem(name:"ship")
+        loader.stopAnimating()
         dismiss(animated: true, completion: nil)
     }
     

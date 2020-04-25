@@ -19,8 +19,10 @@ protocol DataDelegate {
 
 
 class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
-   
-     
+    
+    
+    
+    
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var syncText: UITextField!
@@ -30,16 +32,16 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     )
     
     
-    public var selectedItem: String = "ship"
+    public var selectedItem: String?
     var preloadedEntity: Entity?
-   
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-       
-        preloadModel()
-     
+        
+        //        preloadModel()
+        
         setupARView()
         setupMultipeer()
         setupGestures()
@@ -55,24 +57,24 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         
     }
     
-        func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-           
-//            for anchor in anchors {
-//                if let anchorName = anchor.name, anchorName == "ship"{
-//                    addNewAnchor(named: anchorName,for: anchor)
-//                }
-//
-//            }
-          
-            
-            for anchor in anchors {
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        
+        //            for anchor in anchors {
+        //                if let anchorName = anchor.name, anchorName == "ship"{
+        //                    addNewAnchor(named: anchorName,for: anchor)
+        //                }
+        //
+        //            }
+        
+        
+        for anchor in anchors {
             if let _ = anchor as? ARParticipantAnchor {
-                        print("Successfully connect with another user!")
-                        syncText.text = "Sync!"
-                       
-                    }
+                print("Successfully connect with another user!")
+                syncText.text = "Sync!"
+                
             }
         }
+    }
     
     
     
@@ -81,19 +83,21 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         arView.automaticallyConfigureSession = false
         arView.frame = view.bounds
         arView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-       
+        
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal,.vertical]
         config.environmentTexturing = .automatic
         config.frameSemantics = .personSegmentationWithDepth
         config.isCollaborationEnabled = true
         arView.session.run(config)
-    
+        
+        
+        
     }
     
     
     @IBAction func libraryButtonPressed(_ sender: UIButton) {
-         performSegue(withIdentifier: "goToLibrary", sender: self)
+        performSegue(withIdentifier: "goToLibrary", sender: self)
     }
     
     
@@ -101,28 +105,34 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         if segue.identifier == "goToLibrary"{
             let destionationVC = segue.destination as! LibraryViewController
             destionationVC.delegate = self
-
+            
         }
     }
     
-  
+    
     
     func updateItem(name: String) {
-            self.selectedItem = name
-            preloadModel()
-       }
-       
-       func preloadModel(){
-        preloadedEntity = try! ModelEntity.loadModel(named: selectedItem)
+        self.selectedItem = name
+        preloadModel()
         
-        preloadedEntity!.generateCollisionShapes(recursive: false)
-        arView.installGestures([.rotation, .translation], for: preloadedEntity! as! HasCollision)
-                         
-             
         
-            }
+    }
     
-  
+    func preloadModel(){
+        
+        
+        if let currentItem = selectedItem {
+            preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
+            
+            preloadedEntity!.generateCollisionShapes(recursive: false)
+            arView.installGestures([.rotation, .translation], for: preloadedEntity! as! HasCollision)
+            
+        }
+        
+        
+    }
+    
+    
     
     
 }
@@ -161,9 +171,9 @@ extension ViewController: UIGestureRecognizerDelegate {
             from: touchInView,
             allowing: .existingPlaneGeometry, alignment: .horizontal
         ).first {
-            let anchor = ARAnchor(name: selectedItem, transform: result.worldTransform)
-//            arView.session.add(anchor: anchor)
-            addNewAnchor(named: selectedItem, for: anchor)
+            let anchor = ARAnchor(name: selectedItem ?? "cube", transform: result.worldTransform)
+            //            arView.session.add(anchor: anchor)
+            addNewAnchor(named: selectedItem ?? "cube", for: anchor)
         }
     }
     
@@ -171,54 +181,51 @@ extension ViewController: UIGestureRecognizerDelegate {
     /// - Parameter transform: position in world space where the new anchor should be
     func addNewAnchor(named entityName: String, for anchor: ARAnchor) {
         
-        print(selectedItem)
+       
         if entityName == "cube" {
             addTestCube(for: anchor)
         }
         else {
-//            let entity = try! ModelEntity.loadModel(named: entityName)
-//
-//            entity!.generateCollisionShapes(recursive: false)
-//
-           
-
-             let anchorEntity = AnchorEntity(anchor: anchor)
-
-             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
-
-             anchorEntity.addChild(preloadedEntity!)
-
-             anchorEntity.anchoring = AnchoringComponent(anchor)
-             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+        
             
-             arView.scene.addAnchor(anchorEntity)
-             arView.session.add(anchor: anchor)
-         
-//
-          
+            
+            let anchorEntity = AnchorEntity(anchor: anchor)
+            
+            anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+            
+            anchorEntity.addChild(preloadedEntity!)
+            
+            anchorEntity.anchoring = AnchoringComponent(anchor)
+            anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
+            
+            arView.scene.addAnchor(anchorEntity)
+            arView.session.add(anchor: anchor)
+            selectedItem = nil
+            
+            
         }
         
-     
         
-
+        
+        
         
     }
     
     func addTestCube(for anchor: ARAnchor){
         
         let name = self.multipeerHelp.myPeerID.displayName
-      let newAnchor = AnchorEntity(anchor: anchor)
+        let newAnchor = AnchorEntity(anchor: anchor)
         let color = name == "Lenka’s iPad" ? UIColor.blue : UIColor.red
         let cubeModel = ModelEntity(
             mesh: .generateBox(size: 0.1),
             materials: [SimpleMaterial(color: color, isMetallic: false)]
         )
         cubeModel.generateCollisionShapes(recursive: false)
-
+        
         newAnchor.addChild(cubeModel)
-
+        
         newAnchor.synchronization?.ownershipTransferMode = .autoAccept
-
+        
         newAnchor.anchoring = AnchoringComponent(anchor)
         arView.installGestures([.rotation, .translation], for: cubeModel)
         arView.scene.addAnchor(newAnchor)
@@ -250,17 +257,17 @@ extension ViewController: MultipeerHelperDelegate {
     
     func peerJoined(_ peer: MCPeerID) {
         print("new peer has joined: \(peer.displayName)")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//            self.syncText.text = "Sync!"
-//                 }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        //            self.syncText.text = "Sync!"
+        //                 }
         
     }
     
     func peerLeft(_ peer: MCPeerID) {
-       DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                   self.syncText.text = "Async!"
-                        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.syncText.text = "Async!"
+        }
     }
     
-
+    
 }

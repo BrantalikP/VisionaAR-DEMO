@@ -75,9 +75,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sL8-3U-Xep">
-                                <rect key="frame" x="603" y="195" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sL8-3U-Xep">
+                                <rect key="frame" x="807" y="20" width="25" height="24"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="xmark.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
@@ -85,18 +85,29 @@
                                     <action selector="closeLibrary:" destination="4ty-eO-dWQ" eventType="touchUpInside" id="Hgt-nq-eo8"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TZh-gW-vzN">
+                                <rect key="frame" x="429.5" y="188.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sL8-3U-Xep" firstAttribute="top" secondItem="ScN-z2-9vy" secondAttribute="top" constant="20" id="Hga-md-3mH"/>
+                            <constraint firstItem="ScN-z2-9vy" firstAttribute="trailing" secondItem="sL8-3U-Xep" secondAttribute="trailing" constant="20" id="KXI-ri-ACQ"/>
+                            <constraint firstItem="TZh-gW-vzN" firstAttribute="centerY" secondItem="ljS-f8-Cd4" secondAttribute="centerY" id="bo1-fl-MMY"/>
+                            <constraint firstItem="TZh-gW-vzN" firstAttribute="centerX" secondItem="ljS-f8-Cd4" secondAttribute="centerX" id="vxM-ud-9mo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ScN-z2-9vy"/>
                     </view>
                     <navigationItem key="navigationItem" id="nT4-l3-GEi"/>
                     <connections>
                         <outlet property="background" destination="ljS-f8-Cd4" id="4ju-Dv-vIM"/>
+                        <outlet property="loader" destination="TZh-gW-vzN" id="nMU-iy-yVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6A9-CR-1gK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.27678571428569" y="1098.5507246376812"/>
+            <point key="canvasLocation" x="136.60714285714286" y="1098.5507246376812"/>
         </scene>
     </scenes>
     <resources>
