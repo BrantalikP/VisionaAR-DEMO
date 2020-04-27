@@ -163,6 +163,7 @@ extension ViewController: UIGestureRecognizerDelegate {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
+      // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
         //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
         let data = self.multipeerHelp.myPeerID.displayName
         if let myData = data
@@ -186,7 +187,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             }
         } else if let result = arView.raycast(
             from: touchInView,
-            allowing: .existingPlaneGeometry, alignment: .horizontal
+            allowing: .estimatedPlane, alignment: .horizontal
         ).first {
             let anchor = ARAnchor(name: selectedItem ?? "cube", transform: result.worldTransform)
             arView.session.add(anchor: anchor)
@@ -211,7 +212,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             
             
             let anchorEntity = AnchorEntity(anchor: anchor)
-            
+           
             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
             
             if preloadedEntity == nil {
@@ -228,6 +229,7 @@ extension ViewController: UIGestureRecognizerDelegate {
                 
                 arView.scene.addAnchor(anchorEntity)
                 selectedItem = nil
+                preloadedEntity = nil
             }
             
             

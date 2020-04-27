@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7FCA3AD2A40D44F74C27FF03 /* Pods_DreamHouseVR_DEMO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BBE459E22D137A84D89768 /* Pods_DreamHouseVR_DEMO.framework */; };
+		C149F42C2457291A00E9345D /* door.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C149F42B2457291A00E9345D /* door.usdz */; };
 		C19BF65424544353003188CC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65324544353003188CC /* LibraryViewController.swift */; };
 		C19BF65C24549478003188CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65B24549478003188CC /* Constants.swift */; };
 		C19BF65F2454A227003188CC /* ModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		BAE7B9B861ACA0EE31900862 /* Pods-DreamHouseVR-DEMO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamHouseVR-DEMO.debug.xcconfig"; path = "Target Support Files/Pods-DreamHouseVR-DEMO/Pods-DreamHouseVR-DEMO.debug.xcconfig"; sourceTree = "<group>"; };
+		C149F42B2457291A00E9345D /* door.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = door.usdz; sourceTree = "<group>"; };
 		C19BF65324544353003188CC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		C19BF65B24549478003188CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		C1FDD19124533EAA007C6E3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C149F42B2457291A00E9345D /* door.usdz */,
 				C19BF6612454AA55003188CC /* sofa.usdz */,
 				C1AB58CF24536DF800534EB6 /* ship.usdz */,
 			);
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */,
+				C149F42C2457291A00E9345D /* door.usdz in Resources */,
 				C1AB58D024536DF800534EB6 /* ship.usdz in Resources */,
 				C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */,
 				C19BF6622454AA55003188CC /* sofa.usdz in Resources */,
