@@ -19,6 +19,12 @@
 		C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */; };
 		C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */; };
 		C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E242453838F00263643 /* MultipeerHelper.swift */; };
+		C1D381BD245855480026BC0F /* mini-desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381B9245855460026BC0F /* mini-desk.usdz */; };
+		C1D381BE245855480026BC0F /* chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381BA245855460026BC0F /* chair.usdz */; };
+		C1D381C0245855480026BC0F /* desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381BC245855480026BC0F /* desk.usdz */; };
+		C1D381C3245855560026BC0F /* chair-brown.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C1245855540026BC0F /* chair-brown.usdz */; };
+		C1D381C4245855560026BC0F /* car.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C2245855560026BC0F /* car.usdz */; };
+		C1D381C62458555B0026BC0F /* bed.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C52458555B0026BC0F /* bed.usdz */; };
 		C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17A24532D70007C6E3B /* AppDelegate.swift */; };
 		C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17C24532D70007C6E3B /* ViewController.swift */; };
 		C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17E24532D70007C6E3B /* Experience.rcproject */; };
@@ -40,6 +46,12 @@
 		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
 		C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelperDelegate.swift; sourceTree = "<group>"; };
 		C1D35E242453838F00263643 /* MultipeerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelper.swift; sourceTree = "<group>"; };
+		C1D381B9245855460026BC0F /* mini-desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "mini-desk.usdz"; sourceTree = "<group>"; };
+		C1D381BA245855460026BC0F /* chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = chair.usdz; sourceTree = "<group>"; };
+		C1D381BC245855480026BC0F /* desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = desk.usdz; sourceTree = "<group>"; };
+		C1D381C1245855540026BC0F /* chair-brown.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair-brown.usdz"; sourceTree = "<group>"; };
+		C1D381C2245855560026BC0F /* car.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = car.usdz; sourceTree = "<group>"; };
+		C1D381C52458555B0026BC0F /* bed.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = bed.usdz; sourceTree = "<group>"; };
 		C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DreamHouseVR-DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FDD17A24532D70007C6E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FDD17C24532D70007C6E3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +162,13 @@
 		C1FDD19124533EAA007C6E3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1D381BA245855460026BC0F /* chair.usdz */,
+				C1D381B9245855460026BC0F /* mini-desk.usdz */,
+				C1D381BC245855480026BC0F /* desk.usdz */,
+				C1D381C1245855540026BC0F /* chair-brown.usdz */,
+				C1D381C2245855560026BC0F /* car.usdz */,
 				C149F42B2457291A00E9345D /* door.usdz */,
+				C1D381C52458555B0026BC0F /* bed.usdz */,
 				C19BF6612454AA55003188CC /* sofa.usdz */,
 				C1AB58CF24536DF800534EB6 /* ship.usdz */,
 			);
@@ -241,13 +259,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */,
+				C1D381C0245855480026BC0F /* desk.usdz in Resources */,
+				C1D381C3245855560026BC0F /* chair-brown.usdz in Resources */,
 				C149F42C2457291A00E9345D /* door.usdz in Resources */,
 				C1AB58D024536DF800534EB6 /* ship.usdz in Resources */,
 				C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */,
+				C1D381BD245855480026BC0F /* mini-desk.usdz in Resources */,
 				C19BF6622454AA55003188CC /* sofa.usdz in Resources */,
+				C1D381C62458555B0026BC0F /* bed.usdz in Resources */,
 				C1FDD19324533F4C007C6E3B /* Utilities in Resources */,
 				C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */,
 				C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */,
+				C1D381BE245855480026BC0F /* chair.usdz in Resources */,
+				C1D381C4245855560026BC0F /* car.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

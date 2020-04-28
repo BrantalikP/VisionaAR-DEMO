@@ -37,6 +37,16 @@
                                     <action selector="libraryButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rWc-p3-oZc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7J-mk-2og">
+                                <rect key="frame" x="856" y="371" width="20" height="22"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="trash" catalog="system">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTracking:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7mw-qg-DAF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -47,7 +57,9 @@
                             <constraint firstItem="jux-Oz-MOk" firstAttribute="leading" secondItem="Dui-Gz-6uF" secondAttribute="leading" constant="20" id="lhq-1Z-pWa"/>
                             <constraint firstItem="8bC-Xf-vdC" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" id="oYA-3r-llf"/>
                             <constraint firstAttribute="trailing" secondItem="BKN-u2-2yv" secondAttribute="trailing" constant="50" id="qlS-Fj-r7b"/>
+                            <constraint firstItem="a7J-mk-2og" firstAttribute="bottom" secondItem="Dui-Gz-6uF" secondAttribute="bottom" id="rVX-Aa-cL6"/>
                             <constraint firstItem="BKN-u2-2yv" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="s4e-ZU-yE6"/>
+                            <constraint firstAttribute="trailing" secondItem="a7J-mk-2og" secondAttribute="trailing" constant="20" id="tlA-j0-50A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dui-Gz-6uF"/>
                     </view>
@@ -59,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="134"/>
+            <point key="canvasLocation" x="137.94642857142856" y="133.33333333333334"/>
         </scene>
         <!--Library View Controller-->
         <scene sceneID="AhR-0R-GhB">
@@ -154,6 +166,7 @@
     </scenes>
     <resources>
         <image name="book" catalog="system" width="128" height="101"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

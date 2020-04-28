@@ -121,7 +121,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     func updateItem(name: String) {
         
-      
+        
         if name != "cube" {
             self.selectedItem = name
         }
@@ -138,7 +138,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
             preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
             
             preloadedEntity!.generateCollisionShapes(recursive: true)
-
+            
             arView.installGestures([.rotation, .translation], for: preloadedEntity! as! HasCollision)
             
         }
@@ -147,6 +147,10 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     
+    @IBAction func resetTracking(_ sender: UIButton) {
+        guard let configuration = arView.session.configuration else { print("A configuration is required"); return }
+        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
+    }
     
     
 }
@@ -163,7 +167,7 @@ extension ViewController: UIGestureRecognizerDelegate {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
-      // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
+        // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
         //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
         let data = self.multipeerHelp.myPeerID.displayName
         if let myData = data
@@ -199,10 +203,10 @@ extension ViewController: UIGestureRecognizerDelegate {
     /// - Parameter transform: position in world space where the new anchor should be
     func addNewAnchor(named entityName: String, for anchor: ARAnchor) {
         
-//
-//        let otherPeer = self.multipeerHelp.connectedPeers.first?.displayName
-//        print(otherPeer)
-//
+        //
+        //        let otherPeer = self.multipeerHelp.connectedPeers.first?.displayName
+        //        print(otherPeer)
+        //
         
         if entityName == "cube"  {
             addTestCube(for: anchor)
@@ -212,7 +216,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             
             
             let anchorEntity = AnchorEntity(anchor: anchor)
-           
+            
             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
             
             if preloadedEntity == nil {
@@ -220,7 +224,7 @@ extension ViewController: UIGestureRecognizerDelegate {
                 
                 entity.generateCollisionShapes(recursive: true)
                 arView.installGestures([.rotation, .translation], for: entity)
-
+                
             } else {
                 anchorEntity.addChild(preloadedEntity!)
                 
