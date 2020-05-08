@@ -22,10 +22,15 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     
     
-    
+    let MAX_EMPTY_TOUCHES = 5
     
     @IBOutlet var arView: ARView!
-    @IBOutlet weak var syncText: UITextField!
+    @IBOutlet weak var isSelectedIndicator: UIView!
+    @IBOutlet weak var syncIndicator: UIView!
+    
+    
+    var emptyTouchCounter: Int = 0
+    
     let focusSquare = FESquare()
     var multipeerHelp = MultipeerHelper(
         serviceName: "helper-test"
@@ -34,6 +39,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     public var selectedItem: String?
     var preloadedEntity: Entity?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        syncIndicator.layer.cornerRadius = 12.0
+        isSelectedIndicator.layer.cornerRadius = 12.0
+    }
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,7 +88,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
             
             if let _ = anchor as? ARParticipantAnchor {
                 print("Successfully connect with another user!")
-                syncText.text = "Sync!"
+                syncIndicator.isHidden = false
                 
             }
         }
@@ -120,12 +131,13 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     func updateItem(name: String) {
         
-        
+        self.selectedItem = name
+        isSelectedIndicator.isHidden = true
         if name != "cube" {
-            self.selectedItem = name
+            preloadModel()
         }
         
-        preloadModel()
+        
         
         
     }
@@ -146,10 +158,10 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     
-    @IBAction func resetTracking(_ sender: UIButton) {
-        guard let configuration = arView.session.configuration else { print("A configuration is required"); return }
-        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
-    }
+//    @IBAction func resetTracking(_ sender: UIButton) {
+//        guard let configuration = arView.session.configuration else { print("A configuration is required"); return }
+//        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
+//    }
     
     
 }
@@ -166,6 +178,8 @@ extension ViewController: UIGestureRecognizerDelegate {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
+        
+         emptyTouchCounter += 1
         // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
         //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
         let data = self.multipeerHelp.myPeerID.displayName
@@ -178,6 +192,8 @@ extension ViewController: UIGestureRecognizerDelegate {
         guard let touchInView = sender?.location(in: self.arView) else {
             return
         }
+        
+       
         if let hitEntity = self.arView.entity(at: touchInView) {
             // hit the Entity
             hitEntity.runWithOwnership { (result) in
@@ -191,10 +207,18 @@ extension ViewController: UIGestureRecognizerDelegate {
         } else if let result = arView.raycast(
             from: touchInView,
             allowing: .estimatedPlane, alignment: .horizontal
-        ).first {
-            let anchor = ARAnchor(name: selectedItem ?? "cube", transform: result.worldTransform)
+        ).first, (selectedItem != nil) {
+            let anchor = ARAnchor(name: selectedItem!, transform: result.worldTransform)
             arView.session.add(anchor: anchor)
-            
+            emptyTouchCounter = 0
+           // isSelectedIndicator.isHidden = false
+        }
+        
+       
+        
+        if emptyTouchCounter == MAX_EMPTY_TOUCHES && isSelectedIndicator.isHidden {
+            isSelectedIndicator.isHidden = false
+            emptyTouchCounter = 0
         }
     }
     
@@ -265,6 +289,7 @@ extension ViewController: UIGestureRecognizerDelegate {
         arView.installGestures([.rotation, .translation], for: cubeModel)
         arView.scene.addAnchor(newAnchor)
         arView.session.add(anchor: anchor)
+        selectedItem = nil
     }
 }
 

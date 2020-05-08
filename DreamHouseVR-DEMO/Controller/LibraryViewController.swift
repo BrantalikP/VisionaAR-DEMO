@@ -16,7 +16,7 @@ class LibraryViewController: UIViewController {
     
     
     
-    let models = ["ship","cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
+    let models = ["cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
     
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var objectsCollectionView: UICollectionView!
@@ -105,7 +105,6 @@ extension LibraryViewController: UICollectionViewDelegate {
         loader.startAnimating()
         delegate?.updateItem(name:models[indexPath.row])
         loader.stopAnimating()
-        print("selected model")
         dismiss(animated: true, completion: nil)
     }
     
@@ -145,7 +144,7 @@ extension LibraryViewController: UICollectionViewDataSource {
         generator.generateRepresentations(for: request) { (thumbnail,type,error) in
             DispatchQueue.main.async {
                 if thumbnail == nil || error != nil {
-                    print("Error generatuing thumbnail: \(error?.localizedDescription)")
+                    print("Error generatuing thumbnail: \(error?.localizedDescription ?? self.models[indexPath.row])")
                     return
                 } else {
 

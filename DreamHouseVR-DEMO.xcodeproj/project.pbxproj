@@ -14,7 +14,6 @@
 		C149F42C2457291A00E9345D /* door.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C149F42B2457291A00E9345D /* door.usdz */; };
 		C153B8CE245AD393005733D0 /* office-chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C153B8CD245AD393005733D0 /* office-chair.usdz */; };
 		C1875CDE2465422700FD1EE7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1875CDD2465422700FD1EE7 /* test.swift */; };
-		C1875CE224654DCF00FD1EE7 /* ship.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1875CE124654DCF00FD1EE7 /* ship.usdz */; };
 		C19BF65424544353003188CC /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65324544353003188CC /* LibraryViewController.swift */; };
 		C19BF65C24549478003188CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65B24549478003188CC /* Constants.swift */; };
 		C19BF65F2454A227003188CC /* ModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */; };
@@ -48,7 +47,6 @@
 		C149F42B2457291A00E9345D /* door.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = door.usdz; sourceTree = "<group>"; };
 		C153B8CD245AD393005733D0 /* office-chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "office-chair.usdz"; sourceTree = "<group>"; };
 		C1875CDD2465422700FD1EE7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
-		C1875CE124654DCF00FD1EE7 /* ship.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = ship.usdz; sourceTree = "<group>"; };
 		C19BF65324544353003188CC /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		C19BF65B24549478003188CC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -138,17 +136,17 @@
 			children = (
 				C19BF65A24549456003188CC /* Tools */,
 				C19BF6572454495B003188CC /* Models */,
-				C1D35E212453837500263643 /* MultipeerHelper */,
-				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
+				C1FDD19024533E97007C6E3B /* View */,
 				C1FDD18F24533E86007C6E3B /* Controller */,
+				C1D35E212453837500263643 /* MultipeerHelper */,
 				C1FDD17E24532D70007C6E3B /* Experience.rcproject */,
 				C1FDD19124533EAA007C6E3B /* Resources */,
-				C1FDD19024533E97007C6E3B /* View */,
 				C1FDD18324532D73007C6E3B /* Assets.xcassets */,
 				C1FDD19224533F4C007C6E3B /* Utilities */,
 				C1FDD18524532D73007C6E3B /* LaunchScreen.storyboard */,
 				C1FDD18824532D73007C6E3B /* Info.plist */,
 				C1875CDD2465422700FD1EE7 /* test.swift */,
+				C1FDD17A24532D70007C6E3B /* AppDelegate.swift */,
 			);
 			path = "DreamHouseVR-DEMO";
 			sourceTree = "<group>";
@@ -179,7 +177,6 @@
 				C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */,
 				C11117812462BD5900F9A592 /* kancl-stul.usdz */,
 				C1CA2FB7245963E400AA0D8F /* desk.usdz */,
-				C1875CE124654DCF00FD1EE7 /* ship.usdz */,
 				C153B8CD245AD393005733D0 /* office-chair.usdz */,
 				C1CA2FB52459626200AA0D8F /* chair.usdz */,
 				C1D381BA245855460026BC0F /* chair-backup.usdz */,
@@ -281,7 +278,6 @@
 				C11117862462BEE000F9A592 /* kancl-zidle-2.usdz in Resources */,
 				C1D381C3245855560026BC0F /* chair-brown.usdz in Resources */,
 				C149F42C2457291A00E9345D /* door.usdz in Resources */,
-				C1875CE224654DCF00FD1EE7 /* ship.usdz in Resources */,
 				C153B8CE245AD393005733D0 /* office-chair.usdz in Resources */,
 				C11117822462BD5900F9A592 /* kancl-stul.usdz in Resources */,
 				C1CA2FB62459626200AA0D8F /* chair.usdz in Resources */,
