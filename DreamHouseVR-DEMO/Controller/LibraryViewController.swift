@@ -14,7 +14,7 @@ class LibraryViewController: UIViewController {
     
     
     
-    let models = ["ship","cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","office-chair","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
+    let models = ["ship","cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
     
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var objectsCollectionView: UICollectionView!
