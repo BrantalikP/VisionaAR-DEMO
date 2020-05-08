@@ -14,7 +14,7 @@ class LibraryViewController: UIViewController {
     
     
     
-    let models = ["ship","cube","sofa","door","chair","mini-desk","car","bed","chair-brown","desk"]
+    let models = ["ship","cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","office-chair","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
     
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var objectsCollectionView: UICollectionView!
@@ -117,7 +117,7 @@ extension LibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! ModelCollectionViewCell
         
-        
+        print(models[indexPath.row])
         cell.configure(with: UIImage(named: models[indexPath.row])!)
         return cell
     }

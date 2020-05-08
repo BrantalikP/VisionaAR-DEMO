@@ -46,7 +46,6 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         setupMultipeer()
         setupGestures()
         arView.session.delegate = self
-        
         focusSquare.synchronization = nil
         focusSquare.viewDelegate = arView
         
@@ -274,7 +273,7 @@ extension ViewController: UIGestureRecognizerDelegate {
 extension ViewController: MultipeerHelperDelegate {
     func setupMultipeer() {
         multipeerHelp = MultipeerHelper(
-            serviceName: "helper-test",
+            serviceName: "dreamhouse-demo",
             sessionType: .both,
             delegate: self
         )
