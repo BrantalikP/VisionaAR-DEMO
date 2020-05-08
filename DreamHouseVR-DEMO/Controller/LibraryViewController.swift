@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Combine
+import QuickLookThumbnailing
 
 
 class LibraryViewController: UIViewController {
@@ -50,6 +52,8 @@ class LibraryViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+   
     
     
     
@@ -117,8 +121,43 @@ extension LibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! ModelCollectionViewCell
         
-        print(models[indexPath.row])
-        cell.configure(with: UIImage(named: models[indexPath.row])!)
+        
+        
+      
+
+        if models[indexPath.row] == "cube" {
+            cell.configure(with: UIImage(named: models[indexPath.row])!)
+            return cell
+        }
+
+        guard let url = Bundle.main.url(forResource: models[indexPath.row], withExtension: "usdz") else {
+            print("Unable to create url")
+            return cell
+        }
+
+        let scale = UIScreen.main.scale
+
+
+        let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(width: 120, height: 120), scale: scale, representationTypes: .all)
+
+        let generator = QLThumbnailGenerator.shared
+
+        generator.generateRepresentations(for: request) { (thumbnail,type,error) in
+            DispatchQueue.main.async {
+                if thumbnail == nil || error != nil {
+                    print("Error generatuing thumbnail: \(error?.localizedDescription)")
+                    return
+                } else {
+
+                    cell.configure(with: thumbnail!.uiImage)
+
+
+                }
+
+
+            }
+        }
+
         return cell
     }
     
