@@ -158,10 +158,10 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     
-//    @IBAction func resetTracking(_ sender: UIButton) {
-//        guard let configuration = arView.session.configuration else { print("A configuration is required"); return }
-//        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
-//    }
+    //    @IBAction func resetTracking(_ sender: UIButton) {
+    //        guard let configuration = arView.session.configuration else { print("A configuration is required"); return }
+    //        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
+    //    }
     
     
 }
@@ -179,7 +179,7 @@ extension ViewController: UIGestureRecognizerDelegate {
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
         
-         emptyTouchCounter += 1
+        
         // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
         //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
         let data = self.multipeerHelp.myPeerID.displayName
@@ -193,7 +193,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             return
         }
         
-       
+        
         if let hitEntity = self.arView.entity(at: touchInView) {
             // hit the Entity
             hitEntity.runWithOwnership { (result) in
@@ -207,14 +207,27 @@ extension ViewController: UIGestureRecognizerDelegate {
         } else if let result = arView.raycast(
             from: touchInView,
             allowing: .estimatedPlane, alignment: .horizontal
-        ).first, (selectedItem != nil) {
-            let anchor = ARAnchor(name: selectedItem!, transform: result.worldTransform)
-            arView.session.add(anchor: anchor)
-            emptyTouchCounter = 0
-           // isSelectedIndicator.isHidden = false
+        ).first {
+            if selectedItem != nil {
+                let anchor = ARAnchor(name: selectedItem!, transform: result.worldTransform)
+                arView.session.add(anchor: anchor)
+                emptyTouchCounter = 0
+            }else {
+                emptyTouchCounter += 1
+            }
+            
+            // isSelectedIndicator.isHidden = false
+        } else {
+            if selectedItem != nil {
+                // not found surface with selected object
+//                print("not found surface with selected object")
+            } else {
+                emptyTouchCounter += 1
+            }
+            
         }
         
-       
+        
         
         if emptyTouchCounter == MAX_EMPTY_TOUCHES && isSelectedIndicator.isHidden {
             isSelectedIndicator.isHidden = false
