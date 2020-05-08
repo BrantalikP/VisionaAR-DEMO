@@ -12,11 +12,20 @@ import QuickLookThumbnailing
 
 
 class LibraryViewController: UIViewController {
+    
+    var transparentView = UIView()
+    var colorsTableView = UITableView()
+    
+    let tableHeight: CGFloat = 150
+    var modelColors: [String] = []
+    var selectedModel: String?
+    
     @IBOutlet var background: UIView!
     
     
     
-    let models = ["cube","sofa","door","chair","mini-desk","bed","chair-brown","desk","kancl-stul","kancl-zidle-1","kancl-zidle-2"]
+    let models: [Model] = [Model(name: "cube", colors: []),Model(name: "sofa", colors: []),Model(name: "door", colors: []),Model(name: "chair", colors: ["brown","red","green"]),Model(name: "mini-desk", colors: []),Model(name: "bed", colors: []),Model(name: "small-chair", colors: []),Model(name: "desk", colors: []),Model(name: "kancl-stul", colors: []),Model(name: "kancl-zidle-1", colors: []),Model(name: "kancl-zidle-2", colors: [])]
+    
     
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var objectsCollectionView: UICollectionView!
@@ -36,6 +45,9 @@ class LibraryViewController: UIViewController {
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
+        colorsTableView.delegate = self
+        colorsTableView.dataSource = self
+        colorsTableView.register(UITableViewCell.self, forCellReuseIdentifier: K.tableCellIdentifier)
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         objectsCollectionView.collectionViewLayout = layout
@@ -53,7 +65,7 @@ class LibraryViewController: UIViewController {
     }
     
     
-   
+    
     
     
     
@@ -63,7 +75,27 @@ class LibraryViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension LibraryViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected Category")
+        
+        
+        if tableView == colorsTableView {
+                  if (modelColors.first != nil) && selectedModel != nil {
+
+                  loader.startAnimating()
+                  delegate?.updateItem(name:"\(selectedModel!)-\(modelColors[indexPath.row])")
+                  loader.stopAnimating()
+                  dismiss(animated: true, completion: nil)
+                    
+                  } else {
+                   print("something is wrong")
+                    return
+                  }
+              }else {
+            print("Category")
+            // placeholder
+            dismiss(animated: true, completion: nil)
+        }
+            
+      
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -75,18 +107,32 @@ extension LibraryViewController: UITableViewDelegate{
 extension LibraryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if tableView == colorsTableView {
+            if (modelColors.first != nil) {
+                return modelColors.count
+            } else {
+                return 1
+            }
+        }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "All"
         
-        
-        
+        if tableView == colorsTableView {
+            if (modelColors.first != nil) {
+
+                cell.textLabel?.text = modelColors[indexPath.row]
+                return cell
+                
+            } else {
+                return cell
+            }
+        }
+        cell.textLabel?.text = "X"
         
         
         
@@ -102,12 +148,54 @@ extension LibraryViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         
+        let currentModel = models[indexPath.row]
+        var modelName = currentModel.name
+        
+        
+        if let colorName = currentModel.colors.first {
+            modelName = "\(currentModel.name)-\(colorName)"
+            selectedModel = currentModel.name
+            
+            modelColors = currentModel.colors
+            
+            
+            transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            transparentView.frame = self.view.frame
+            self.view.addSubview(transparentView)
+            
+            
+            let screenSize = UIScreen.main.bounds.size
+            colorsTableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: tableHeight)
+            self.view.addSubview(colorsTableView)
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
+            transparentView.addGestureRecognizer(tapGesture)
+            
+            transparentView.alpha = 0
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                self.transparentView.alpha = 0.5
+                self.colorsTableView.frame = CGRect(x: 0, y: screenSize.height - self.tableHeight, width: screenSize.width, height: self.tableHeight)
+            }, completion: nil)
+            
+            
+            return
+        }
+        
         loader.startAnimating()
-        delegate?.updateItem(name:models[indexPath.row])
+        delegate?.updateItem(name:modelName)
         loader.stopAnimating()
         dismiss(animated: true, completion: nil)
     }
     
+    @objc func onClickTransparentView() {
+        let screenSize = UIScreen.main.bounds.size
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0
+            self.colorsTableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.tableHeight)
+        }, completion: nil)
+        
+    }
     
 }
 
@@ -121,42 +209,47 @@ extension LibraryViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! ModelCollectionViewCell
         
         
+        let currentModel = models[indexPath.row]
+        var modelName = currentModel.name
         
-      
-
-        if models[indexPath.row] == "cube" {
-            cell.configure(with: UIImage(named: models[indexPath.row])!)
+        if currentModel.name == "cube" {
+            cell.configure(with: UIImage(named: currentModel.name)!)
             return cell
         }
-
-        guard let url = Bundle.main.url(forResource: models[indexPath.row], withExtension: "usdz") else {
+        
+        if let colorName = currentModel.colors.first {
+            modelName = "\(currentModel.name)-\(colorName)"
+        }
+        
+        
+        guard let url = Bundle.main.url(forResource: modelName, withExtension: "usdz") else {
             print("Unable to create url")
             return cell
         }
-
+        
         let scale = UIScreen.main.scale
-
-
+        
+        
         let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(width: 120, height: 120), scale: scale, representationTypes: .all)
-
+        
         let generator = QLThumbnailGenerator.shared
-
+        
         generator.generateRepresentations(for: request) { (thumbnail,type,error) in
             DispatchQueue.main.async {
                 if thumbnail == nil || error != nil {
-                    print("Error generatuing thumbnail: \(error?.localizedDescription ?? self.models[indexPath.row])")
+                    print("Error generatuing thumbnail: \(error?.localizedDescription ?? self.models[indexPath.row].name)")
                     return
                 } else {
-
+                    
                     cell.configure(with: thumbnail!.uiImage)
-
-
+                    
+                    
                 }
-
-
+                
+                
             }
         }
-
+        
         return cell
     }
     
