@@ -19,12 +19,13 @@ class LibraryViewController: UIViewController {
     let tableHeight: CGFloat = 150
     var modelColors: [String] = []
     var selectedModel: String?
+    var categoryModels: [Model] = []
     
     @IBOutlet var background: UIView!
     
+    let categories: [Category] = [Category(name: "All"),Category(name: "Chair"),Category(name: "Bed"),Category(name: "Table")]
     
-    
-    let models: [Model] = [Model(name: "cube", colors: []),Model(name: "sofa", colors: []),Model(name: "door", colors: []),Model(name: "chair", colors: ["brown","red","green"]),Model(name: "mini-desk", colors: []),Model(name: "bed", colors: []),Model(name: "small-chair", colors: []),Model(name: "desk", colors: []),Model(name: "kancl-stul", colors: []),Model(name: "kancl-zidle-1", colors: []),Model(name: "kancl-zidle-2", colors: [])]
+    let models: [Model] = [Model(name: "cube", colors: []),Model(name: "sofa", colors: []),Model(name: "door", colors: []),Model(name: "chair", colors: ["brown","red","green"],category: "Chair"),Model(name: "mini-desk", colors: [],category: "Table"),Model(name: "bed", colors: [],category:"Bed"),Model(name: "small-chair", colors: [],category: "Chair"),Model(name: "desk", colors: [],category: "Table"),Model(name: "kancl-stul", colors: [],category: "Table"),Model(name: "kancl-zidle-1", colors: [],category: "Chair"),Model(name: "kancl-zidle-2", colors: [],category: "Chair")]
     
     
     @IBOutlet weak var categoryTableView: UITableView!
@@ -37,7 +38,7 @@ class LibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        background.backgroundColor = UIColor.red
+      
         
         
         loader.hidesWhenStopped = true
@@ -51,7 +52,7 @@ class LibraryViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 120, height: 120)
         objectsCollectionView.collectionViewLayout = layout
-        
+        objectsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 15)
         objectsCollectionView.register(ModelCollectionViewCell.nib(), forCellWithReuseIdentifier: K.collectionCellIdentifier)
         objectsCollectionView.delegate = self
         objectsCollectionView.dataSource = self
@@ -65,6 +66,21 @@ class LibraryViewController: UIViewController {
     }
     
     
+    
+   func selectCateogoryItem(with category: Category) {
+         categoryModels = []
+        if category.name == "All" {
+           objectsCollectionView.reloadData()
+            return
+        }
+        for model in models {
+            if model.category == category.name {
+                categoryModels.append(model)
+            }
+        }
+    
+    objectsCollectionView.reloadData()
+    }
     
     
     
@@ -92,7 +108,7 @@ extension LibraryViewController: UITableViewDelegate{
               }else {
             print("Category")
             // placeholder
-            dismiss(animated: true, completion: nil)
+            selectCateogoryItem(with: categories[indexPath.row])
         }
             
       
@@ -114,7 +130,7 @@ extension LibraryViewController: UITableViewDataSource {
                 return 1
             }
         }
-        return 1
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,7 +148,9 @@ extension LibraryViewController: UITableViewDataSource {
                 return cell
             }
         }
-        cell.textLabel?.text = "X"
+        
+    
+        cell.textLabel?.text = categories[indexPath.row].name.uppercased()
         
         
         
@@ -148,7 +166,7 @@ extension LibraryViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         
-        let currentModel = models[indexPath.row]
+        let currentModel = !categoryModels.isEmpty ? categoryModels[indexPath.row] : models[indexPath.row]
         var modelName = currentModel.name
         
         
@@ -202,6 +220,10 @@ extension LibraryViewController: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension LibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (!categoryModels.isEmpty) {
+            return categoryModels.count
+        }
         return models.count
     }
     
@@ -209,7 +231,7 @@ extension LibraryViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionCellIdentifier, for: indexPath) as! ModelCollectionViewCell
         
         
-        let currentModel = models[indexPath.row]
+        let currentModel = !categoryModels.isEmpty ? categoryModels[indexPath.row] : models[indexPath.row]
         var modelName = currentModel.name
         
         if currentModel.name == "cube" {

@@ -11,4 +11,5 @@ import Foundation
 struct Model {
     var name: String
     var colors: [String]
+    var category: String?
 }

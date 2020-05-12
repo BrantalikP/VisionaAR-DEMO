@@ -34,6 +34,7 @@
 		C1D381C0245855480026BC0F /* desk-backup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381BC245855480026BC0F /* desk-backup.usdz */; };
 		C1D381C3245855560026BC0F /* small-chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C1245855540026BC0F /* small-chair.usdz */; };
 		C1D381C62458555B0026BC0F /* bed.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C52458555B0026BC0F /* bed.usdz */; };
+		C1FD7600246A9242006CA55D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD75FF246A9242006CA55D /* Category.swift */; };
 		C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17A24532D70007C6E3B /* AppDelegate.swift */; };
 		C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17C24532D70007C6E3B /* ViewController.swift */; };
 		C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17E24532D70007C6E3B /* Experience.rcproject */; };
@@ -70,7 +71,8 @@
 		C1D381BC245855480026BC0F /* desk-backup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "desk-backup.usdz"; sourceTree = "<group>"; };
 		C1D381C1245855540026BC0F /* small-chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "small-chair.usdz"; sourceTree = "<group>"; };
 		C1D381C52458555B0026BC0F /* bed.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = bed.usdz; sourceTree = "<group>"; };
-		C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DreamHouseVR-DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1FD75FF246A9242006CA55D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		C1FDD17724532D70007C6E3B /* Visiona-DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Visiona-DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FDD17A24532D70007C6E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FDD17C24532D70007C6E3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C1FDD17E24532D70007C6E3B /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C15AEE3024658530004B0F09 /* Model.swift */,
+				C1FD75FF246A9242006CA55D /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,7 +138,7 @@
 		C1FDD17824532D70007C6E3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */,
+				C1FDD17724532D70007C6E3B /* Visiona-DEMO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,7 +243,7 @@
 				C1D35E0F24537A8000263643 /* FocusEntity */,
 			);
 			productName = "DreamHouseVR-DEMO";
-			productReference = C1FDD17724532D70007C6E3B /* DreamHouseVR-DEMO.app */;
+			productReference = C1FDD17724532D70007C6E3B /* Visiona-DEMO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -348,6 +351,7 @@
 				C19BF65424544353003188CC /* LibraryViewController.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
+				C1FD7600246A9242006CA55D /* Category.swift in Sources */,
 				C15AEE3124658530004B0F09 /* Model.swift in Sources */,
 				C19BF65C24549478003188CC /* Constants.swift in Sources */,
 				C1875CDE2465422700FD1EE7 /* test.swift in Sources */,
@@ -503,7 +507,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.dreamhouse.demo.DreamHouseVR-DEMO";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Visiona-DEMO";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -522,7 +526,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cz.dreamhouse.demo.DreamHouseVR-DEMO";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Visiona-DEMO";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

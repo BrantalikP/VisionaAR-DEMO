@@ -304,6 +304,10 @@ extension ViewController: UIGestureRecognizerDelegate {
         arView.session.add(anchor: anchor)
         selectedItem = nil
     }
+    
+    
+    
+    
 }
 
 

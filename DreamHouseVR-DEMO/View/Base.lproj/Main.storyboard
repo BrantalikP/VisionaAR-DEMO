@@ -11,7 +11,7 @@
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="DreamHouseVR_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="Visiona_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sdq-hV-VpC">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -99,47 +99,37 @@
         <!--Library View Controller-->
         <scene sceneID="AhR-0R-GhB">
             <objects>
-                <viewController id="4ty-eO-dWQ" customClass="LibraryViewController" customModule="DreamHouseVR_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4ty-eO-dWQ" customClass="LibraryViewController" customModule="Visiona_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ljS-f8-Cd4">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sL8-3U-Xep">
-                                <rect key="frame" x="807" y="20" width="25" height="24"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="xmark.circle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeLibrary:" destination="4ty-eO-dWQ" eventType="touchUpInside" id="Hgt-nq-eo8"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="TZh-gW-vzN">
                                 <rect key="frame" x="429.5" y="188.5" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvT-PA-keH">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <rect key="frame" x="0.0" y="30" width="896" height="384"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yx2-1z-iO5">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="414"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="384"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="r50-IE-gip"/>
+                                            <constraint firstAttribute="width" constant="220" id="r50-IE-gip"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" id="Dcc-yJ-PaO">
-                                                <rect key="frame" x="0.0" y="28" width="300" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="220" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dcc-yJ-PaO" id="TZI-IP-bTE">
-                                                    <rect key="frame" x="44" y="0.0" width="256" height="43.5"/>
+                                                    <rect key="frame" x="44" y="0.0" width="176" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jOr-fp-Mbl">
-                                        <rect key="frame" x="300" y="0.0" width="596" height="414"/>
+                                        <rect key="frame" x="220" y="0.0" width="676" height="384"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xMr-jY-4mL">
                                             <size key="itemSize" width="128" height="128"/>
@@ -160,16 +150,26 @@
                                     </collectionView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sL8-3U-Xep">
+                                <rect key="frame" x="50" y="5" width="18" height="22"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeLibrary:" destination="4ty-eO-dWQ" eventType="touchUpInside" id="Hgt-nq-eo8"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="dvT-PA-keH" secondAttribute="bottom" id="5s0-o3-2mg"/>
-                            <constraint firstItem="sL8-3U-Xep" firstAttribute="top" secondItem="ScN-z2-9vy" secondAttribute="top" constant="20" id="Hga-md-3mH"/>
-                            <constraint firstItem="ScN-z2-9vy" firstAttribute="trailing" secondItem="sL8-3U-Xep" secondAttribute="trailing" constant="20" id="KXI-ri-ACQ"/>
-                            <constraint firstItem="dvT-PA-keH" firstAttribute="top" secondItem="ScN-z2-9vy" secondAttribute="top" id="NDT-SY-RYF"/>
+                            <constraint firstItem="dvT-PA-keH" firstAttribute="top" secondItem="ScN-z2-9vy" secondAttribute="top" constant="30" id="NDT-SY-RYF"/>
                             <constraint firstItem="dvT-PA-keH" firstAttribute="leading" secondItem="ljS-f8-Cd4" secondAttribute="leading" id="UM3-lN-CeP"/>
                             <constraint firstAttribute="trailing" secondItem="dvT-PA-keH" secondAttribute="trailing" id="azf-Rd-kj3"/>
                             <constraint firstItem="TZh-gW-vzN" firstAttribute="centerY" secondItem="ljS-f8-Cd4" secondAttribute="centerY" id="bo1-fl-MMY"/>
+                            <constraint firstItem="sL8-3U-Xep" firstAttribute="leading" secondItem="ljS-f8-Cd4" secondAttribute="leading" constant="50" id="ian-EN-xoj"/>
+                            <constraint firstItem="sL8-3U-Xep" firstAttribute="top" secondItem="ScN-z2-9vy" secondAttribute="top" constant="5" id="vGb-Tv-HWs"/>
                             <constraint firstItem="TZh-gW-vzN" firstAttribute="centerX" secondItem="ljS-f8-Cd4" secondAttribute="centerX" id="vxM-ud-9mo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ScN-z2-9vy"/>
@@ -189,6 +189,6 @@
     </scenes>
     <resources>
         <image name="square.grid.4x3.fill" catalog="system" width="128" height="87"/>
-        <image name="xmark.circle" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>
