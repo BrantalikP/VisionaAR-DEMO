@@ -14,11 +14,14 @@ import QuickLookThumbnailing
 class LibraryViewController: UIViewController {
     
     var transparentView = UIView()
-    var colorsTableView = UITableView()
+    var colorCloseButton = UIButton()
+    var colorCollectionView: UICollectionView!
+    var colorsView = UIView()
     
-    let tableHeight: CGFloat = 150
+    let tableHeight: CGFloat = 200
     var modelColors: [String] = []
     var selectedModel: String?
+    var selectedCategory: String = "All"
     var categoryModels: [Model] = []
     
     @IBOutlet var background: UIView!
@@ -38,25 +41,59 @@ class LibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let screenSize = UIScreen.main.bounds.size
+        let frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: tableHeight)
+        
+        // ColorView
+        colorsView.frame = frame
+    
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 120, height: 120)
+        
+       
       
         
+        colorCloseButton.layer.cornerRadius = 15
+        colorCloseButton.addTarget(self, action: #selector(onClickTransparentView), for: .touchUpInside)
+        colorCloseButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.7)
         
+        colorCloseButton.frame = CGRect(x: screenSize.width - 50, y: 5, width: 40, height: 40)
+        colorCloseButton.setTitle("X", for: .normal)
+        colorCloseButton.titleLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
+        
+        colorCollectionView = UICollectionView(frame: CGRect(x: 0, y: 50, width: screenSize.width, height: 150), collectionViewLayout: layout)
+        colorCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.95)
         loader.hidesWhenStopped = true
         
+        // Category
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
-        colorsTableView.delegate = self
-        colorsTableView.dataSource = self
-        colorsTableView.register(UITableViewCell.self, forCellReuseIdentifier: K.tableCellIdentifier)
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 120, height: 120)
+   
+        // Objects
         objectsCollectionView.collectionViewLayout = layout
         objectsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 15)
         objectsCollectionView.register(ModelCollectionViewCell.nib(), forCellWithReuseIdentifier: K.collectionCellIdentifier)
         objectsCollectionView.delegate = self
         objectsCollectionView.dataSource = self
         
+        
+        // Colors
+
+        colorCollectionView.clipsToBounds = true
+        colorCollectionView.layer.cornerRadius = 20
+        colorCollectionView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+        colorCollectionView.contentInset = UIEdgeInsets(top: 10, left: 50, bottom: 10, right: 50)
+        colorCollectionView.register(ModelCollectionViewCell.nib(), forCellWithReuseIdentifier: K.collectionCellIdentifier)
+        colorCollectionView.delegate = self
+        colorCollectionView.dataSource = self
+        
+        colorsView.addSubview(colorCollectionView)
+        colorsView.addSubview(colorCloseButton)
+        
+      
         
     }
     
@@ -67,10 +104,10 @@ class LibraryViewController: UIViewController {
     
     
     
-   func selectCateogoryItem(with category: Category) {
-         categoryModels = []
+    func selectCateogoryItem(with category: Category) {
+        categoryModels = []
         if category.name == "All" {
-           objectsCollectionView.reloadData()
+            objectsCollectionView.reloadData()
             return
         }
         for model in models {
@@ -78,8 +115,8 @@ class LibraryViewController: UIViewController {
                 categoryModels.append(model)
             }
         }
-    
-    objectsCollectionView.reloadData()
+        
+        objectsCollectionView.reloadData()
     }
     
     
@@ -93,26 +130,14 @@ extension LibraryViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        if tableView == colorsTableView {
-                  if (modelColors.first != nil) && selectedModel != nil {
-
-                  loader.startAnimating()
-                  delegate?.updateItem(name:"\(selectedModel!)-\(modelColors[indexPath.row])")
-                  loader.stopAnimating()
-                  dismiss(animated: true, completion: nil)
-                    
-                  } else {
-                   print("something is wrong")
-                    return
-                  }
-              }else {
-            print("Category")
-            // placeholder
-            selectCateogoryItem(with: categories[indexPath.row])
-        }
-            
+    
+        selectCateogoryItem(with: categories[indexPath.row])
       
+        
+        selectedCategory = categories[indexPath.row].name
+       
         tableView.deselectRow(at: indexPath, animated: true)
+         tableView.reloadData()
     }
     
     
@@ -123,13 +148,7 @@ extension LibraryViewController: UITableViewDelegate{
 extension LibraryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView == colorsTableView {
-            if (modelColors.first != nil) {
-                return modelColors.count
-            } else {
-                return 1
-            }
-        }
+      
         return categories.count
     }
     
@@ -138,18 +157,12 @@ extension LibraryViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.tableCellIdentifier, for: indexPath)
         
-        if tableView == colorsTableView {
-            if (modelColors.first != nil) {
-
-                cell.textLabel?.text = modelColors[indexPath.row]
-                return cell
-                
-            } else {
-                return cell
-            }
+        if  selectedCategory == categories[indexPath.row].name {
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 19, weight: .bold)
+        } else {
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         }
         
-    
         cell.textLabel?.text = categories[indexPath.row].name.uppercased()
         
         
@@ -169,6 +182,9 @@ extension LibraryViewController: UICollectionViewDelegate {
         let currentModel = !categoryModels.isEmpty ? categoryModels[indexPath.row] : models[indexPath.row]
         var modelName = currentModel.name
         
+        if collectionView == colorCollectionView && selectedModel != nil {
+            modelName = "\(selectedModel!)-\(modelColors[indexPath.row])"
+        }
         
         if let colorName = currentModel.colors.first {
             modelName = "\(currentModel.name)-\(colorName)"
@@ -181,10 +197,10 @@ extension LibraryViewController: UICollectionViewDelegate {
             transparentView.frame = self.view.frame
             self.view.addSubview(transparentView)
             
-            
-            let screenSize = UIScreen.main.bounds.size
-            colorsTableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: tableHeight)
-            self.view.addSubview(colorsTableView)
+           
+           let screenSize = UIScreen.main.bounds.size
+
+            self.view.addSubview(colorsView)
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
             transparentView.addGestureRecognizer(tapGesture)
@@ -193,7 +209,7 @@ extension LibraryViewController: UICollectionViewDelegate {
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.transparentView.alpha = 0.5
-                self.colorsTableView.frame = CGRect(x: 0, y: screenSize.height - self.tableHeight, width: screenSize.width, height: self.tableHeight)
+                self.colorsView.frame = CGRect(x: 0, y: screenSize.height - self.tableHeight, width: screenSize.width, height: self.tableHeight)
             }, completion: nil)
             
             
@@ -210,7 +226,7 @@ extension LibraryViewController: UICollectionViewDelegate {
         let screenSize = UIScreen.main.bounds.size
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.transparentView.alpha = 0
-            self.colorsTableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.tableHeight)
+            self.colorsView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.tableHeight)
         }, completion: nil)
         
     }
@@ -220,6 +236,10 @@ extension LibraryViewController: UICollectionViewDelegate {
 //MARK: - UICollectionViewDataSource
 extension LibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == colorCollectionView {
+            return modelColors.count
+        }
         
         if (!categoryModels.isEmpty) {
             return categoryModels.count
@@ -234,13 +254,17 @@ extension LibraryViewController: UICollectionViewDataSource {
         let currentModel = !categoryModels.isEmpty ? categoryModels[indexPath.row] : models[indexPath.row]
         var modelName = currentModel.name
         
-        if currentModel.name == "cube" {
+        if currentModel.name == "cube" && collectionView != colorCollectionView  {
             cell.configure(with: UIImage(named: currentModel.name)!)
             return cell
         }
         
         if let colorName = currentModel.colors.first {
             modelName = "\(currentModel.name)-\(colorName)"
+        }
+        
+        if collectionView == colorCollectionView && selectedModel != nil {
+            modelName = "\(selectedModel!)-\(modelColors[indexPath.row])"
         }
         
         
