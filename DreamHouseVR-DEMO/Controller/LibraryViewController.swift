@@ -26,10 +26,9 @@ class LibraryViewController: UIViewController {
     
     @IBOutlet var background: UIView!
     
-    let categories: [Category] = [Category(name: "All"),Category(name: "Chair"),Category(name: "Bed"),Category(name: "Table")]
+    var categories: [Category]!
     
-    let models: [Model] = [Model(name: "cube", colors: []),Model(name: "sofa", colors: []),Model(name: "door", colors: []),Model(name: "chair", colors: ["brown","red","green"],category: "Chair"),Model(name: "mini-desk", colors: [],category: "Table"),Model(name: "bed", colors: [],category:"Bed"),Model(name: "small-chair", colors: [],category: "Chair"),Model(name: "desk", colors: [],category: "Table"),Model(name: "kancl-stul", colors: [],category: "Table"),Model(name: "kancl-zidle-1", colors: [],category: "Chair"),Model(name: "kancl-zidle-2", colors: [],category: "Chair")]
-    
+    var models: [Model]!
     
     @IBOutlet weak var categoryTableView: UITableView!
     @IBOutlet weak var objectsCollectionView: UICollectionView!
@@ -41,7 +40,8 @@ class LibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        categories = CategoryService.shared.getCategories()
+        models = ModelService.shared.getModels()
         
         let screenSize = UIScreen.main.bounds.size
         let frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: tableHeight)
@@ -217,7 +217,7 @@ extension LibraryViewController: UICollectionViewDelegate {
         }
         
         loader.startAnimating()
-        delegate?.updateItem(name:modelName)
+        delegate?.updateItem(name:modelName,category: currentModel.category)
         loader.stopAnimating()
         dismiss(animated: true, completion: nil)
     }

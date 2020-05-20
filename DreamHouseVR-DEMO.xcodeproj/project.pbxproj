@@ -23,6 +23,8 @@
 		C19BF65F2454A227003188CC /* ModelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */; };
 		C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19BF65E2454A227003188CC /* ModelCollectionViewCell.xib */; };
 		C19BF6622454AA55003188CC /* sofa.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C19BF6612454AA55003188CC /* sofa.usdz */; };
+		C1AAD7D22472A6AB007E08C5 /* l-sofa-grey.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AAD7D12472A6AB007E08C5 /* l-sofa-grey.usdz */; };
+		C1AAD7D42472C4B4007E08C5 /* brantalik.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AAD7D32472C4B4007E08C5 /* brantalik.usdz */; };
 		C1CA2FB62459626200AA0D8F /* chair-brown.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1CA2FB52459626200AA0D8F /* chair-brown.usdz */; };
 		C1CA2FB8245963E400AA0D8F /* desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1CA2FB7245963E400AA0D8F /* desk.usdz */; };
 		C1D35E1024537A8000263643 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* FocusEntity */; };
@@ -34,6 +36,8 @@
 		C1D381C0245855480026BC0F /* desk-backup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381BC245855480026BC0F /* desk-backup.usdz */; };
 		C1D381C3245855560026BC0F /* small-chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C1245855540026BC0F /* small-chair.usdz */; };
 		C1D381C62458555B0026BC0F /* bed.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1D381C52458555B0026BC0F /* bed.usdz */; };
+		C1D99D772471B8B5001FA511 /* ModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D99D762471B8B5001FA511 /* ModelService.swift */; };
+		C1D99D792471B96D001FA511 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D99D782471B96D001FA511 /* CategoryService.swift */; };
 		C1FD7600246A9242006CA55D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD75FF246A9242006CA55D /* Category.swift */; };
 		C1FDD17B24532D70007C6E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17A24532D70007C6E3B /* AppDelegate.swift */; };
 		C1FDD17D24532D70007C6E3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FDD17C24532D70007C6E3B /* ViewController.swift */; };
@@ -61,6 +65,8 @@
 		C19BF65D2454A227003188CC /* ModelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollectionViewCell.swift; sourceTree = "<group>"; };
 		C19BF65E2454A227003188CC /* ModelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModelCollectionViewCell.xib; sourceTree = "<group>"; };
 		C19BF6612454AA55003188CC /* sofa.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sofa.usdz; sourceTree = "<group>"; };
+		C1AAD7D12472A6AB007E08C5 /* l-sofa-grey.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "l-sofa-grey.usdz"; sourceTree = "<group>"; };
+		C1AAD7D32472C4B4007E08C5 /* brantalik.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = brantalik.usdz; sourceTree = "<group>"; };
 		C1CA2FB52459626200AA0D8F /* chair-brown.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair-brown.usdz"; sourceTree = "<group>"; };
 		C1CA2FB7245963E400AA0D8F /* desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = desk.usdz; path = "../../../AR/stul-zidla/desk.usdz"; sourceTree = "<group>"; };
 		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		C1D381BC245855480026BC0F /* desk-backup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "desk-backup.usdz"; sourceTree = "<group>"; };
 		C1D381C1245855540026BC0F /* small-chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "small-chair.usdz"; sourceTree = "<group>"; };
 		C1D381C52458555B0026BC0F /* bed.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = bed.usdz; sourceTree = "<group>"; };
+		C1D99D762471B8B5001FA511 /* ModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelService.swift; sourceTree = "<group>"; };
+		C1D99D782471B96D001FA511 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		C1FD75FF246A9242006CA55D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C1FDD17724532D70007C6E3B /* Visiona-DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Visiona-DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FDD17A24532D70007C6E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +109,7 @@
 		C19BF6572454495B003188CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C1D99D752471B89D001FA511 /* Service */,
 				C15AEE3024658530004B0F09 /* Model.swift */,
 				C1FD75FF246A9242006CA55D /* Category.swift */,
 			);
@@ -123,6 +132,15 @@
 				C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */,
 			);
 			path = MultipeerHelper;
+			sourceTree = "<group>";
+		};
+		C1D99D752471B89D001FA511 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C1D99D762471B8B5001FA511 /* ModelService.swift */,
+				C1D99D782471B96D001FA511 /* CategoryService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		C1FDD16E24532D70007C6E3B = {
@@ -188,6 +206,8 @@
 			children = (
 				C11117832462BE7200F9A592 /* kancl-zidle-1.usdz */,
 				C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */,
+				C1AAD7D12472A6AB007E08C5 /* l-sofa-grey.usdz */,
+				C1AAD7D32472C4B4007E08C5 /* brantalik.usdz */,
 				C11117812462BD5900F9A592 /* kancl-stul.usdz */,
 				C1CA2FB7245963E400AA0D8F /* desk.usdz */,
 				C153B8CD245AD393005733D0 /* office-chair.usdz */,
@@ -302,10 +322,12 @@
 				C19BF6622454AA55003188CC /* sofa.usdz in Resources */,
 				C1D381C62458555B0026BC0F /* bed.usdz in Resources */,
 				C1FDD19324533F4C007C6E3B /* Utilities in Resources */,
+				C1AAD7D42472C4B4007E08C5 /* brantalik.usdz in Resources */,
 				C1875CE62465845B00FD1EE7 /* chair-red.usdz in Resources */,
 				C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */,
 				C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */,
 				C1D381BE245855480026BC0F /* chair-backup.usdz in Resources */,
+				C1AAD7D22472A6AB007E08C5 /* l-sofa-grey.usdz in Resources */,
 				C1875CE42465845300FD1EE7 /* chair-green.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +371,9 @@
 				C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */,
 				C15AEE3324659451004B0F09 /* ColorsTableViewCell.swift in Sources */,
 				C19BF65424544353003188CC /* LibraryViewController.swift in Sources */,
+				C1D99D772471B8B5001FA511 /* ModelService.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
+				C1D99D792471B96D001FA511 /* CategoryService.swift in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
 				C1FD7600246A9242006CA55D /* Category.swift in Sources */,
 				C15AEE3124658530004B0F09 /* Model.swift in Sources */,

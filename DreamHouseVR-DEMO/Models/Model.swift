@@ -12,4 +12,6 @@ struct Model {
     var name: String
     var colors: [String]
     var category: String?
+    var width: Float?
+    var height: Float?
 }

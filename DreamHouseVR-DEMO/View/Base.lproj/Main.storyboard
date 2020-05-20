@@ -23,7 +23,7 @@
                                 <rect key="frame" x="328" y="20" width="240" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select item from library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVz-qX-Ft4">
-                                        <rect key="frame" x="31" y="24.5" width="178" height="21"/>
+                                        <rect key="frame" x="31" y="25" width="178" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLz-ce-vFe">
-                                <rect key="frame" x="20" y="20" width="98" height="30"/>
+                                <rect key="frame" x="30" y="20" width="98" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCK-3h-6re">
                                         <rect key="frame" x="27.5" y="5" width="43" height="20.5"/>
@@ -74,7 +74,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="3Cl-K8-ZWm"/>
                             <constraint firstItem="8bC-Xf-vdC" firstAttribute="top" secondItem="sdq-hV-VpC" secondAttribute="top" id="9jO-6x-9qZ"/>
-                            <constraint firstItem="GLz-ce-vFe" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" constant="20" id="NxB-x8-nq2"/>
+                            <constraint firstItem="GLz-ce-vFe" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" constant="30" id="NxB-x8-nq2"/>
                             <constraint firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="UkW-Gb-YaG"/>
                             <constraint firstItem="GLz-ce-vFe" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="VYV-fP-OZE"/>
                             <constraint firstItem="uqo-n7-ppN" firstAttribute="centerX" secondItem="sdq-hV-VpC" secondAttribute="centerX" id="Vey-9v-wxw"/>

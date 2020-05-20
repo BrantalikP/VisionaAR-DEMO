@@ -14,11 +14,12 @@ import ARKit
 import MultipeerConnectivity
 
 protocol DataDelegate {
-    func updateItem(name: String)
+    func updateItem(name: String,category: String?)
 }
 
 
 class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
+    
     
     
     
@@ -27,7 +28,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     @IBOutlet var arView: ARView!
     @IBOutlet weak var isSelectedIndicator: UIView!
     @IBOutlet weak var syncIndicator: UIView!
-    
+ 
     
     var emptyTouchCounter: Int = 0
     
@@ -39,6 +40,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     public var selectedItem: String?
     var preloadedEntity: Entity?
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,23 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     func session(_: ARSession, didUpdate _: ARFrame) {
         focusSquare.updateFocusEntity()
+        
+//        if testEntity != nil{
+//
+//
+//            if entityScale != testEntity!.transform.scale {
+//
+//                let scaleX = testEntity!.transform.scale.x
+//                if let width = modelWidth,let height = modelHeight {
+//                    self.widthLabel.text = "width: \(Float(width) * scaleX)m"
+//                    self.heightLabel.text = "height: \(Float(height) * scaleX)m"
+//                }
+//
+//                entityScale  = testEntity!.transform.scale
+//
+//            }
+//
+//        }
         
     }
     
@@ -129,12 +148,16 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     
     
-    func updateItem(name: String) {
+    func updateItem(name: String,category: String?) {
         
         self.selectedItem = name
         isSelectedIndicator.isHidden = true
         if name != "cube" {
-            preloadModel()
+            
+        
+                preloadModel()
+         
+            
         }
         
         
@@ -142,11 +165,44 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         
     }
     
+    func  calculateRealSize(at entity: Entity,by modelName: String) -> Transform {
+        
+        let bounds = entity.visualBounds(recursive: true, relativeTo: nil, excludeInactive: false)
+        let width = CGFloat(bounds.max.x - bounds.min.x)
+    
+        
+        let model = ModelService.shared.getModel(with: modelName)
+        
+        let calculatedScale = Float(CGFloat(model!.width!) / width)
+       
+        var newTransform = entity.transform
+        newTransform.scale = .init(
+            repeating: Float(calculatedScale)
+        )
+        
+        return newTransform
+    }
+    
+    
+  
+    
     func preloadModel(){
         
         
         if let currentItem = selectedItem {
+            
+            let model = ModelService.shared.getModel(with: currentItem)
+            
+            
             preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
+            
+            if model!.width != nil {
+                
+                let newTransform = calculateRealSize(at: preloadedEntity!,by: currentItem) // set model actual size
+                preloadedEntity!.transform = newTransform
+                              
+            }
+                    
             
             preloadedEntity!.generateCollisionShapes(recursive: true)
             
@@ -173,7 +229,10 @@ extension ViewController: UIGestureRecognizerDelegate {
     func setupGestures() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.arView.addGestureRecognizer(tap)
+        
+        
     }
+    
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -193,13 +252,12 @@ extension ViewController: UIGestureRecognizerDelegate {
             return
         }
         
-        
         if let hitEntity = self.arView.entity(at: touchInView) {
             // hit the Entity
             hitEntity.runWithOwnership { (result) in
                 switch result {
                 case .success:
-                    print("hitted Object")
+                    print("touch")
                 case .failure:
                     print("could not get access to entity")
                 }
@@ -220,7 +278,7 @@ extension ViewController: UIGestureRecognizerDelegate {
         } else {
             if selectedItem != nil {
                 // not found surface with selected object
-//                print("not found surface with selected object")
+                //                print("not found surface with selected object")
             } else {
                 emptyTouchCounter += 1
             }
@@ -229,11 +287,18 @@ extension ViewController: UIGestureRecognizerDelegate {
         
         
         
+        
+        
         if emptyTouchCounter == MAX_EMPTY_TOUCHES && isSelectedIndicator.isHidden {
             isSelectedIndicator.isHidden = false
             emptyTouchCounter = 0
         }
     }
+    
+    
+    
+    
+    
     
     /// Add a new anchor to the session
     /// - Parameter transform: position in world space where the new anchor should be
@@ -258,12 +323,22 @@ extension ViewController: UIGestureRecognizerDelegate {
             if preloadedEntity == nil {
                 let entity = try! ModelEntity.loadModel(named: entityName)
                 
+        
+                 let model = ModelService.shared.getModel(with: entityName)
+                 
+                 if model!.width != nil {
+                     
+                     let newTransform = calculateRealSize(at: preloadedEntity!,by: entityName) // set model actual size
+                     preloadedEntity!.transform = newTransform
+                                   
+                 }
+               
                 entity.generateCollisionShapes(recursive: true)
                 arView.installGestures([.rotation, .translation], for: entity)
                 
             } else {
                 anchorEntity.addChild(preloadedEntity!)
-                
+               
                 anchorEntity.anchoring = AnchoringComponent(anchor)
                 anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
                 
