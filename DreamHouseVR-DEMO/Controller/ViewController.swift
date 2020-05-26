@@ -12,6 +12,7 @@ import FocusEntity
 import RealityKit
 import ARKit
 import MultipeerConnectivity
+import ReplayKit
 
 protocol DataDelegate {
     func updateItem(name: String,category: String?)
@@ -28,7 +29,8 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     @IBOutlet var arView: ARView!
     @IBOutlet weak var isSelectedIndicator: UIView!
     @IBOutlet weak var syncIndicator: UIView!
- 
+    @IBOutlet var mainView: UIView!
+    
     
     var emptyTouchCounter: Int = 0
     
@@ -42,8 +44,21 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     var preloadedEntity: Entity?
   
     
+    // RECORD
+    
+    var recorder = RPScreenRecorder.shared()
+    var isRecording = false
+    @IBOutlet weak var recordBtn: UIButton!
+    
+    @IBOutlet weak var LibraryBtn: UIButton!
+    
+//    var windowToHideHUD:UIWindow!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+//        addButtons(buttons: [recordBtn])
+        recordBtn.layer.cornerRadius = 20.0
         syncIndicator.layer.cornerRadius = 12.0
         isSelectedIndicator.layer.cornerRadius = 12.0
     }
@@ -52,9 +67,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        //        preloadModel()
-        
+      
         setupARView()
         setupMultipeer()
         setupGestures()
@@ -63,6 +76,33 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         focusSquare.viewDelegate = arView
         
     }
+    
+    // for hide button in record preview
+//    func addButtons(buttons: [UIButton]) {
+//        self.windowToHideHUD = UIWindow(frame: self.view.frame);
+//        self.windowToHideHUD.rootViewController = HiddenStatusBarViewController()
+//        for button in buttons {
+//
+//            button.setTitle("dick", for: .normal)
+//            self.windowToHideHUD.rootViewController?.view.addSubview(button)
+//
+//             button.translatesAutoresizingMaskIntoConstraints = false
+//            let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0 )
+//
+//               let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+//
+//               let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
+//
+//               let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
+//
+//               self.windowToHideHUD.rootViewController?.view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+//
+//
+//        }
+//
+//
+//        self.windowToHideHUD.makeKeyAndVisible()
+//    }
     
     func session(_: ARSession, didUpdate _: ARFrame) {
         focusSquare.updateFocusEntity()
@@ -219,6 +259,14 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     //        arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors,])
     //    }
     
+    @IBAction func recordBtnPressed(_ sender: UIButton) {
+        
+        if !isRecording {
+                  startRecording()
+              } else {
+                  stopRecording()
+              }
+    }
     
 }
 

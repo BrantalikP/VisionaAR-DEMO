@@ -69,16 +69,33 @@
                                     <constraint firstItem="RCK-3h-6re" firstAttribute="centerX" secondItem="GLz-ce-vFe" secondAttribute="centerX" id="xEs-4b-Afz"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avc-bn-pf5">
+                                <rect key="frame" x="30" y="354" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="XcE-VI-aEG"/>
+                                    <constraint firstAttribute="height" constant="40" id="mVq-of-NQ1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="REC">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y2S-i1-Yj2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="3Cl-K8-ZWm"/>
+                            <constraint firstAttribute="bottom" secondItem="avc-bn-pf5" secondAttribute="bottom" constant="20" id="7uO-01-f9j"/>
                             <constraint firstItem="8bC-Xf-vdC" firstAttribute="top" secondItem="sdq-hV-VpC" secondAttribute="top" id="9jO-6x-9qZ"/>
                             <constraint firstItem="GLz-ce-vFe" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" constant="30" id="NxB-x8-nq2"/>
                             <constraint firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="UkW-Gb-YaG"/>
                             <constraint firstItem="GLz-ce-vFe" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="VYV-fP-OZE"/>
                             <constraint firstItem="uqo-n7-ppN" firstAttribute="centerX" secondItem="sdq-hV-VpC" secondAttribute="centerX" id="Vey-9v-wxw"/>
                             <constraint firstItem="uqo-n7-ppN" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="gwx-jT-b1G"/>
+                            <constraint firstItem="avc-bn-pf5" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" constant="30" id="jPp-Lp-nkT"/>
                             <constraint firstItem="WfL-8d-3n7" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="k5O-0b-gNe"/>
                             <constraint firstItem="8bC-Xf-vdC" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" id="oYA-3r-llf"/>
                             <constraint firstItem="Dui-Gz-6uF" firstAttribute="trailing" secondItem="WfL-8d-3n7" secondAttribute="trailing" constant="20" id="srV-JU-sYD"/>
@@ -86,8 +103,11 @@
                         <viewLayoutGuide key="safeArea" id="Dui-Gz-6uF"/>
                     </view>
                     <connections>
+                        <outlet property="LibraryBtn" destination="WfL-8d-3n7" id="Ud5-9F-2TD"/>
                         <outlet property="arView" destination="8bC-Xf-vdC" id="TPV-4x-avp"/>
                         <outlet property="isSelectedIndicator" destination="uqo-n7-ppN" id="TgC-LH-eyh"/>
+                        <outlet property="mainView" destination="sdq-hV-VpC" id="7SW-UU-pEm"/>
+                        <outlet property="recordBtn" destination="avc-bn-pf5" id="1NL-BX-eaA"/>
                         <outlet property="syncIndicator" destination="GLz-ce-vFe" id="a5m-JM-Q63"/>
                         <segue destination="4ty-eO-dWQ" kind="show" identifier="goToLibrary" id="W6u-jE-5dO"/>
                     </connections>

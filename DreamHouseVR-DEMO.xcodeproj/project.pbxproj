@@ -27,6 +27,8 @@
 		C1AAD7D42472C4B4007E08C5 /* brantalik.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1AAD7D32472C4B4007E08C5 /* brantalik.usdz */; };
 		C1CA2FB62459626200AA0D8F /* chair-brown.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1CA2FB52459626200AA0D8F /* chair-brown.usdz */; };
 		C1CA2FB8245963E400AA0D8F /* desk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C1CA2FB7245963E400AA0D8F /* desk.usdz */; };
+		C1CEB84724755AD1004483B1 /* ScreenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CEB84624755AD1004483B1 /* ScreenRecord.swift */; };
+		C1CEB84A2475640F004483B1 /* HiddenStatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CEB8492475640F004483B1 /* HiddenStatusBarViewController.swift */; };
 		C1D35E1024537A8000263643 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = C1D35E0F24537A8000263643 /* FocusEntity */; };
 		C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */; };
 		C1D35E262453838F00263643 /* MultipeerHelperDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */; };
@@ -69,6 +71,8 @@
 		C1AAD7D32472C4B4007E08C5 /* brantalik.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = brantalik.usdz; sourceTree = "<group>"; };
 		C1CA2FB52459626200AA0D8F /* chair-brown.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "chair-brown.usdz"; sourceTree = "<group>"; };
 		C1CA2FB7245963E400AA0D8F /* desk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = desk.usdz; path = "../../../AR/stul-zidla/desk.usdz"; sourceTree = "<group>"; };
+		C1CEB84624755AD1004483B1 /* ScreenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecord.swift; sourceTree = "<group>"; };
+		C1CEB8492475640F004483B1 /* HiddenStatusBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenStatusBarViewController.swift; sourceTree = "<group>"; };
 		C1D35E222453838F00263643 /* HasSynchronization+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HasSynchronization+Extensions.swift"; sourceTree = "<group>"; };
 		C1D35E232453838F00263643 /* MultipeerHelperDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelperDelegate.swift; sourceTree = "<group>"; };
 		C1D35E242453838F00263643 /* MultipeerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerHelper.swift; sourceTree = "<group>"; };
@@ -122,6 +126,22 @@
 				C19BF65B24549478003188CC /* Constants.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		C1CEB84424755A72004483B1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1CEB84524755AAB004483B1 /* ViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C1CEB84524755AAB004483B1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C1CEB84624755AD1004483B1 /* ScreenRecord.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C1D35E212453837500263643 /* MultipeerHelper */ = {
@@ -183,8 +203,10 @@
 		C1FDD18F24533E86007C6E3B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C1CEB84424755A72004483B1 /* Extensions */,
 				C1FDD17C24532D70007C6E3B /* ViewController.swift */,
 				C19BF65324544353003188CC /* LibraryViewController.swift */,
+				C1CEB8492475640F004483B1 /* HiddenStatusBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,7 +398,9 @@
 				C1D99D792471B96D001FA511 /* CategoryService.swift in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
 				C1FD7600246A9242006CA55D /* Category.swift in Sources */,
+				C1CEB84724755AD1004483B1 /* ScreenRecord.swift in Sources */,
 				C15AEE3124658530004B0F09 /* Model.swift in Sources */,
+				C1CEB84A2475640F004483B1 /* HiddenStatusBarViewController.swift in Sources */,
 				C19BF65C24549478003188CC /* Constants.swift in Sources */,
 				C1875CDE2465422700FD1EE7 /* test.swift in Sources */,
 			);
