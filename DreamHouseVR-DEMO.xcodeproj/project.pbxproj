@@ -13,6 +13,24 @@
 		C11117862462BEE000F9A592 /* kancl-zidle-2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */; };
 		C149F42C2457291A00E9345D /* door.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C149F42B2457291A00E9345D /* door.usdz */; };
 		C153B8CE245AD393005733D0 /* office-chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C153B8CD245AD393005733D0 /* office-chair.usdz */; };
+		C15AABD3247FBD7300CCDD0A /* Metropolis-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC1247FBD6F00CCDD0A /* Metropolis-ExtraLight.otf */; };
+		C15AABD4247FBD7300CCDD0A /* Metropolis-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC2247FBD7000CCDD0A /* Metropolis-Light.otf */; };
+		C15AABD5247FBD7300CCDD0A /* Metropolis-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC3247FBD7000CCDD0A /* Metropolis-ExtraBold.otf */; };
+		C15AABD6247FBD7300CCDD0A /* Metropolis-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC4247FBD7000CCDD0A /* Metropolis-RegularItalic.otf */; };
+		C15AABD7247FBD7300CCDD0A /* Metropolis-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC5247FBD7000CCDD0A /* Metropolis-Black.otf */; };
+		C15AABD8247FBD7300CCDD0A /* Metropolis-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC6247FBD7100CCDD0A /* Metropolis-SemiBold.otf */; };
+		C15AABD9247FBD7300CCDD0A /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC7247FBD7100CCDD0A /* Metropolis-Regular.otf */; };
+		C15AABDA247FBD7300CCDD0A /* Metropolis-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC8247FBD7100CCDD0A /* Metropolis-LightItalic.otf */; };
+		C15AABDB247FBD7300CCDD0A /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABC9247FBD7100CCDD0A /* Metropolis-Bold.otf */; };
+		C15AABDC247FBD7300CCDD0A /* Metropolis-SemiBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCA247FBD7100CCDD0A /* Metropolis-SemiBoldItalic.otf */; };
+		C15AABDD247FBD7300CCDD0A /* Metropolis-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCB247FBD7200CCDD0A /* Metropolis-BlackItalic.otf */; };
+		C15AABDE247FBD7300CCDD0A /* Metropolis-ExtraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCC247FBD7200CCDD0A /* Metropolis-ExtraLightItalic.otf */; };
+		C15AABDF247FBD7300CCDD0A /* Metropolis-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCD247FBD7200CCDD0A /* Metropolis-BoldItalic.otf */; };
+		C15AABE0247FBD7300CCDD0A /* Metropolis-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCE247FBD7200CCDD0A /* Metropolis-ThinItalic.otf */; };
+		C15AABE1247FBD7300CCDD0A /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABCF247FBD7300CCDD0A /* Metropolis-Medium.otf */; };
+		C15AABE2247FBD7300CCDD0A /* Metropolis-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABD0247FBD7300CCDD0A /* Metropolis-MediumItalic.otf */; };
+		C15AABE3247FBD7300CCDD0A /* Metropolis-ExtraBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABD1247FBD7300CCDD0A /* Metropolis-ExtraBoldItalic.otf */; };
+		C15AABE4247FBD7300CCDD0A /* Metropolis-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C15AABD2247FBD7300CCDD0A /* Metropolis-Thin.otf */; };
 		C15AEE3124658530004B0F09 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEE3024658530004B0F09 /* Model.swift */; };
 		C15AEE3324659451004B0F09 /* ColorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEE3224659451004B0F09 /* ColorsTableViewCell.swift */; };
 		C1875CDE2465422700FD1EE7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1875CDD2465422700FD1EE7 /* test.swift */; };
@@ -57,6 +75,24 @@
 		C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = "kancl-zidle-2.usdz"; path = "../../../AR/DEMO KANCL/kancl-zidle-2.usdz"; sourceTree = "<group>"; };
 		C149F42B2457291A00E9345D /* door.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = door.usdz; sourceTree = "<group>"; };
 		C153B8CD245AD393005733D0 /* office-chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "office-chair.usdz"; sourceTree = "<group>"; };
+		C15AABC1247FBD6F00CCDD0A /* Metropolis-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ExtraLight.otf"; sourceTree = "<group>"; };
+		C15AABC2247FBD7000CCDD0A /* Metropolis-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Light.otf"; sourceTree = "<group>"; };
+		C15AABC3247FBD7000CCDD0A /* Metropolis-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ExtraBold.otf"; sourceTree = "<group>"; };
+		C15AABC4247FBD7000CCDD0A /* Metropolis-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-RegularItalic.otf"; sourceTree = "<group>"; };
+		C15AABC5247FBD7000CCDD0A /* Metropolis-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Black.otf"; sourceTree = "<group>"; };
+		C15AABC6247FBD7100CCDD0A /* Metropolis-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBold.otf"; sourceTree = "<group>"; };
+		C15AABC7247FBD7100CCDD0A /* Metropolis-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Regular.otf"; sourceTree = "<group>"; };
+		C15AABC8247FBD7100CCDD0A /* Metropolis-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-LightItalic.otf"; sourceTree = "<group>"; };
+		C15AABC9247FBD7100CCDD0A /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
+		C15AABCA247FBD7100CCDD0A /* Metropolis-SemiBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-SemiBoldItalic.otf"; sourceTree = "<group>"; };
+		C15AABCB247FBD7200CCDD0A /* Metropolis-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-BlackItalic.otf"; sourceTree = "<group>"; };
+		C15AABCC247FBD7200CCDD0A /* Metropolis-ExtraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ExtraLightItalic.otf"; sourceTree = "<group>"; };
+		C15AABCD247FBD7200CCDD0A /* Metropolis-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-BoldItalic.otf"; sourceTree = "<group>"; };
+		C15AABCE247FBD7200CCDD0A /* Metropolis-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ThinItalic.otf"; sourceTree = "<group>"; };
+		C15AABCF247FBD7300CCDD0A /* Metropolis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Medium.otf"; sourceTree = "<group>"; };
+		C15AABD0247FBD7300CCDD0A /* Metropolis-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-MediumItalic.otf"; sourceTree = "<group>"; };
+		C15AABD1247FBD7300CCDD0A /* Metropolis-ExtraBoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-ExtraBoldItalic.otf"; sourceTree = "<group>"; };
+		C15AABD2247FBD7300CCDD0A /* Metropolis-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Thin.otf"; sourceTree = "<group>"; };
 		C15AEE3024658530004B0F09 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		C15AEE3224659451004B0F09 /* ColorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsTableViewCell.swift; sourceTree = "<group>"; };
 		C1875CDD2465422700FD1EE7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
@@ -110,6 +146,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C15AABC0247FBD1400CCDD0A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C15AABC5247FBD7000CCDD0A /* Metropolis-Black.otf */,
+				C15AABCB247FBD7200CCDD0A /* Metropolis-BlackItalic.otf */,
+				C15AABC9247FBD7100CCDD0A /* Metropolis-Bold.otf */,
+				C15AABCD247FBD7200CCDD0A /* Metropolis-BoldItalic.otf */,
+				C15AABC3247FBD7000CCDD0A /* Metropolis-ExtraBold.otf */,
+				C15AABD1247FBD7300CCDD0A /* Metropolis-ExtraBoldItalic.otf */,
+				C15AABC1247FBD6F00CCDD0A /* Metropolis-ExtraLight.otf */,
+				C15AABCC247FBD7200CCDD0A /* Metropolis-ExtraLightItalic.otf */,
+				C15AABC2247FBD7000CCDD0A /* Metropolis-Light.otf */,
+				C15AABC8247FBD7100CCDD0A /* Metropolis-LightItalic.otf */,
+				C15AABCF247FBD7300CCDD0A /* Metropolis-Medium.otf */,
+				C15AABD0247FBD7300CCDD0A /* Metropolis-MediumItalic.otf */,
+				C15AABC7247FBD7100CCDD0A /* Metropolis-Regular.otf */,
+				C15AABC4247FBD7000CCDD0A /* Metropolis-RegularItalic.otf */,
+				C15AABC6247FBD7100CCDD0A /* Metropolis-SemiBold.otf */,
+				C15AABCA247FBD7100CCDD0A /* Metropolis-SemiBoldItalic.otf */,
+				C15AABD2247FBD7300CCDD0A /* Metropolis-Thin.otf */,
+				C15AABCE247FBD7200CCDD0A /* Metropolis-ThinItalic.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C19BF6572454495B003188CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +287,7 @@
 		C1FDD19124533EAA007C6E3B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C15AABC0247FBD1400CCDD0A /* Fonts */,
 				C11117832462BE7200F9A592 /* kancl-zidle-1.usdz */,
 				C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */,
 				C1AAD7D12472A6AB007E08C5 /* l-sofa-grey.usdz */,
@@ -329,27 +391,45 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C15AABE4247FBD7300CCDD0A /* Metropolis-Thin.otf in Resources */,
+				C15AABE0247FBD7300CCDD0A /* Metropolis-ThinItalic.otf in Resources */,
+				C15AABDF247FBD7300CCDD0A /* Metropolis-BoldItalic.otf in Resources */,
 				C11117842462BE7200F9A592 /* kancl-zidle-1.usdz in Resources */,
 				C1FDD18724532D73007C6E3B /* LaunchScreen.storyboard in Resources */,
 				C1D381C0245855480026BC0F /* desk-backup.usdz in Resources */,
 				C11117862462BEE000F9A592 /* kancl-zidle-2.usdz in Resources */,
+				C15AABD3247FBD7300CCDD0A /* Metropolis-ExtraLight.otf in Resources */,
 				C1D381C3245855560026BC0F /* small-chair.usdz in Resources */,
+				C15AABD4247FBD7300CCDD0A /* Metropolis-Light.otf in Resources */,
 				C149F42C2457291A00E9345D /* door.usdz in Resources */,
+				C15AABD9247FBD7300CCDD0A /* Metropolis-Regular.otf in Resources */,
 				C153B8CE245AD393005733D0 /* office-chair.usdz in Resources */,
 				C11117822462BD5900F9A592 /* kancl-stul.usdz in Resources */,
 				C1CA2FB62459626200AA0D8F /* chair-brown.usdz in Resources */,
 				C19BF6602454A227003188CC /* ModelCollectionViewCell.xib in Resources */,
 				C1CA2FB8245963E400AA0D8F /* desk.usdz in Resources */,
 				C1D381BD245855480026BC0F /* mini-desk.usdz in Resources */,
+				C15AABDB247FBD7300CCDD0A /* Metropolis-Bold.otf in Resources */,
+				C15AABD7247FBD7300CCDD0A /* Metropolis-Black.otf in Resources */,
+				C15AABDE247FBD7300CCDD0A /* Metropolis-ExtraLightItalic.otf in Resources */,
+				C15AABE1247FBD7300CCDD0A /* Metropolis-Medium.otf in Resources */,
+				C15AABDA247FBD7300CCDD0A /* Metropolis-LightItalic.otf in Resources */,
 				C19BF6622454AA55003188CC /* sofa.usdz in Resources */,
+				C15AABDD247FBD7300CCDD0A /* Metropolis-BlackItalic.otf in Resources */,
+				C15AABD8247FBD7300CCDD0A /* Metropolis-SemiBold.otf in Resources */,
+				C15AABDC247FBD7300CCDD0A /* Metropolis-SemiBoldItalic.otf in Resources */,
 				C1D381C62458555B0026BC0F /* bed.usdz in Resources */,
+				C15AABD6247FBD7300CCDD0A /* Metropolis-RegularItalic.otf in Resources */,
+				C15AABE3247FBD7300CCDD0A /* Metropolis-ExtraBoldItalic.otf in Resources */,
 				C1FDD19324533F4C007C6E3B /* Utilities in Resources */,
+				C15AABD5247FBD7300CCDD0A /* Metropolis-ExtraBold.otf in Resources */,
 				C1AAD7D42472C4B4007E08C5 /* brantalik.usdz in Resources */,
 				C1875CE62465845B00FD1EE7 /* chair-red.usdz in Resources */,
 				C1FDD18424532D73007C6E3B /* Assets.xcassets in Resources */,
 				C1FDD18224532D70007C6E3B /* Main.storyboard in Resources */,
 				C1D381BE245855480026BC0F /* chair-backup.usdz in Resources */,
 				C1AAD7D22472A6AB007E08C5 /* l-sofa-grey.usdz in Resources */,
+				C15AABE2247FBD7300CCDD0A /* Metropolis-MediumItalic.otf in Resources */,
 				C1875CE42465845300FD1EE7 /* chair-green.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

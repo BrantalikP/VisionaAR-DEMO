@@ -30,6 +30,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     @IBOutlet weak var isSelectedIndicator: UIView!
     @IBOutlet weak var syncIndicator: UIView!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var syncImage: UIImageView!
     
     
     var emptyTouchCounter: Int = 0
@@ -58,7 +59,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         super.viewDidLoad()
        
 //        addButtons(buttons: [recordBtn])
-        recordBtn.layer.cornerRadius = 20.0
+        recordBtn.layer.cornerRadius = 15.0
         syncIndicator.layer.cornerRadius = 12.0
         isSelectedIndicator.layer.cornerRadius = 12.0
     }
@@ -236,7 +237,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
             
             preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
             
-            if model!.width != nil {
+            if model?.width != nil {
                 
                 let newTransform = calculateRealSize(at: preloadedEntity!,by: currentItem) // set model actual size
                 preloadedEntity!.transform = newTransform
@@ -268,6 +269,24 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
               }
     }
     
+    @IBAction func flashlightBtnPressed(_ sender: UIButton) {
+        toggleTorch()
+    }
+    
+    func toggleTorch() {
+        guard
+            let device = AVCaptureDevice.default(for: AVMediaType.video),
+            device.hasTorch
+        else { return }
+
+        do {
+            try device.lockForConfiguration()
+            device.torchMode = device.torchMode == .on ? .off : .on
+            device.unlockForConfiguration()
+        } catch {
+            print("Torch could not be used")
+        }
+    }
 }
 
 
@@ -374,10 +393,10 @@ extension ViewController: UIGestureRecognizerDelegate {
         
                  let model = ModelService.shared.getModel(with: entityName)
                  
-                 if model!.width != nil {
+                 if model?.width != nil {
                      
-                     let newTransform = calculateRealSize(at: preloadedEntity!,by: entityName) // set model actual size
-                     preloadedEntity!.transform = newTransform
+                     let newTransform = calculateRealSize(at: entity,by: entityName) // set model actual size
+                     entity.transform = newTransform
                                    
                  }
                
