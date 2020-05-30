@@ -127,7 +127,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         //
         //        }
         
+        
+        
+        
     }
+    
+    
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         
@@ -139,7 +144,11 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         //            }
         
         
+        
+        
+        
         for anchor in anchors {
+            
             
             for anchor in anchors {
                 if let anchorName = anchor.name {
@@ -159,6 +168,8 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     
     
+    
+    
     func setupARView() {
         arView.automaticallyConfigureSession = false
         arView.frame = view.bounds
@@ -169,10 +180,10 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         config.environmentTexturing = .automatic
         config.frameSemantics = .personSegmentationWithDepth
         config.isCollaborationEnabled = true
-//        config.sceneReconstruction = .meshWithClassification
+        //        config.sceneReconstruction = .meshWithClassification
         arView.session.run(config)
         
-//        arView.debugOptions.insert(.showSceneUnderstanding)
+        //        arView.debugOptions.insert(.showSceneUnderstanding)
         
         
     }
@@ -238,7 +249,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
             
             let model = ModelService.shared.getModel(with: currentItem)
             
-            
+            //let physics = Physics()
             preloadedEntity = try! ModelEntity.loadModel(named: currentItem)
             
             if model?.width != nil {
@@ -247,6 +258,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
                 preloadedEntity!.transform = newTransform
                 
             }
+            
+            //let dynamicComponent: PhysicsBodyComponent = physics.physicsBody!
+            //            let motionComponent: PhysicsMotionComponent = physics.physicsMotion!
+            
+            //preloadedEntity!.components.set(dynamicComponent)
+            //            preloadedEntity!.components.set(motionComponent)
             
             
             preloadedEntity!.generateCollisionShapes(recursive: true)
@@ -276,7 +293,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     @IBAction func cameraBtnPressed(_ sender: UIButton) {
         getScreenshot()
     }
-   
+    
     
     func toggleTorch() {
         guard
@@ -294,17 +311,17 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     func getScreenshot() {
- 
+        
         arView.snapshot(saveToHDR: false) { (image) in
             //Save it to the camera roll
-           UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+            UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
         }
-          
-       
+        
+        
     }
     func saveImage(_ image: ARView.Image) {
-                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-           }
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+    }
 }
 
 
@@ -414,6 +431,7 @@ extension ViewController: UIGestureRecognizerDelegate {
             anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
             
             if preloadedEntity == nil {
+                //let physics = Physics()
                 let entity = try! ModelEntity.loadModel(named: entityName)
                 
                 
@@ -426,6 +444,12 @@ extension ViewController: UIGestureRecognizerDelegate {
                     
                 }
                 
+                
+                //let dynamicComponent: PhysicsBodyComponent = physics.physicsBody!
+                //                let motionComponent: PhysicsMotionComponent = physics.physicsMotion!
+                
+                //entity.components.set(dynamicComponent)
+                //                entity.components.set(motionComponent)
                 entity.generateCollisionShapes(recursive: true)
                 arView.installGestures([.rotation, .translation], for: entity)
                 
