@@ -23,6 +23,8 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     
     
+    @IBOutlet weak var flashLightBtn: UIButton!
+    @IBOutlet weak var toolBarBtn: UIButton!
     
     let MAX_EMPTY_TOUCHES = 5
     
@@ -43,7 +45,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     public var selectedItem: String?
     var preloadedEntity: Entity?
-  
+    
     
     // RECORD
     
@@ -53,12 +55,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     
     @IBOutlet weak var LibraryBtn: UIButton!
     
-//    var windowToHideHUD:UIWindow!
+    //    var windowToHideHUD:UIWindow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-//        addButtons(buttons: [recordBtn])
+        
+        //        addButtons(buttons: [recordBtn])
         recordBtn.layer.cornerRadius = 15.0
         syncIndicator.layer.cornerRadius = 12.0
         isSelectedIndicator.layer.cornerRadius = 12.0
@@ -68,7 +70,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-      
+        
         setupARView()
         setupMultipeer()
         setupGestures()
@@ -79,51 +81,51 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     // for hide button in record preview
-//    func addButtons(buttons: [UIButton]) {
-//        self.windowToHideHUD = UIWindow(frame: self.view.frame);
-//        self.windowToHideHUD.rootViewController = HiddenStatusBarViewController()
-//        for button in buttons {
-//
-//            button.setTitle("dick", for: .normal)
-//            self.windowToHideHUD.rootViewController?.view.addSubview(button)
-//
-//             button.translatesAutoresizingMaskIntoConstraints = false
-//            let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0 )
-//
-//               let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
-//
-//               let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
-//
-//               let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
-//
-//               self.windowToHideHUD.rootViewController?.view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-//
-//
-//        }
-//
-//
-//        self.windowToHideHUD.makeKeyAndVisible()
-//    }
+    //    func addButtons(buttons: [UIButton]) {
+    //        self.windowToHideHUD = UIWindow(frame: self.view.frame);
+    //        self.windowToHideHUD.rootViewController = HiddenStatusBarViewController()
+    //        for button in buttons {
+    //
+    //            button.setTitle("dick", for: .normal)
+    //            self.windowToHideHUD.rootViewController?.view.addSubview(button)
+    //
+    //             button.translatesAutoresizingMaskIntoConstraints = false
+    //            let horizontalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0 )
+    //
+    //               let verticalConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem:  self.windowToHideHUD.rootViewController?.view, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
+    //
+    //               let widthConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
+    //
+    //               let heightConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 100)
+    //
+    //               self.windowToHideHUD.rootViewController?.view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+    //
+    //
+    //        }
+    //
+    //
+    //        self.windowToHideHUD.makeKeyAndVisible()
+    //    }
     
     func session(_: ARSession, didUpdate _: ARFrame) {
         focusSquare.updateFocusEntity()
         
-//        if testEntity != nil{
-//
-//
-//            if entityScale != testEntity!.transform.scale {
-//
-//                let scaleX = testEntity!.transform.scale.x
-//                if let width = modelWidth,let height = modelHeight {
-//                    self.widthLabel.text = "width: \(Float(width) * scaleX)m"
-//                    self.heightLabel.text = "height: \(Float(height) * scaleX)m"
-//                }
-//
-//                entityScale  = testEntity!.transform.scale
-//
-//            }
-//
-//        }
+        //        if testEntity != nil{
+        //
+        //
+        //            if entityScale != testEntity!.transform.scale {
+        //
+        //                let scaleX = testEntity!.transform.scale.x
+        //                if let width = modelWidth,let height = modelHeight {
+        //                    self.widthLabel.text = "width: \(Float(width) * scaleX)m"
+        //                    self.heightLabel.text = "height: \(Float(height) * scaleX)m"
+        //                }
+        //
+        //                entityScale  = testEntity!.transform.scale
+        //
+        //            }
+        //
+        //        }
         
     }
     
@@ -167,8 +169,10 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         config.environmentTexturing = .automatic
         config.frameSemantics = .personSegmentationWithDepth
         config.isCollaborationEnabled = true
+//        config.sceneReconstruction = .meshWithClassification
         arView.session.run(config)
         
+//        arView.debugOptions.insert(.showSceneUnderstanding)
         
         
     }
@@ -195,9 +199,9 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         isSelectedIndicator.isHidden = true
         if name != "cube" {
             
-        
-                preloadModel()
-         
+            
+            preloadModel()
+            
             
         }
         
@@ -210,12 +214,12 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
         
         let bounds = entity.visualBounds(recursive: true, relativeTo: nil, excludeInactive: false)
         let width = CGFloat(bounds.max.x - bounds.min.x)
-    
+        
         
         let model = ModelService.shared.getModel(with: modelName)
         
         let calculatedScale = Float(CGFloat(model!.width!) / width)
-       
+        
         var newTransform = entity.transform
         newTransform.scale = .init(
             repeating: Float(calculatedScale)
@@ -225,7 +229,7 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     }
     
     
-  
+    
     
     func preloadModel(){
         
@@ -241,9 +245,9 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
                 
                 let newTransform = calculateRealSize(at: preloadedEntity!,by: currentItem) // set model actual size
                 preloadedEntity!.transform = newTransform
-                              
+                
             }
-                    
+            
             
             preloadedEntity!.generateCollisionShapes(recursive: true)
             
@@ -263,22 +267,23 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
     @IBAction func recordBtnPressed(_ sender: UIButton) {
         
         if !isRecording {
-                  startRecording()
-              } else {
-                  stopRecording()
-              }
+            startRecording()
+        } else {
+            stopRecording()
+        }
     }
     
-    @IBAction func flashlightBtnPressed(_ sender: UIButton) {
-        toggleTorch()
+    @IBAction func cameraBtnPressed(_ sender: UIButton) {
+        getScreenshot()
     }
+   
     
     func toggleTorch() {
         guard
             let device = AVCaptureDevice.default(for: AVMediaType.video),
             device.hasTorch
-        else { return }
-
+            else { return }
+        
         do {
             try device.lockForConfiguration()
             device.torchMode = device.torchMode == .on ? .off : .on
@@ -287,6 +292,19 @@ class ViewController: UIViewController,ARSessionDelegate,DataDelegate{
             print("Torch could not be used")
         }
     }
+    
+    func getScreenshot() {
+ 
+        arView.snapshot(saveToHDR: false) { (image) in
+            //Save it to the camera roll
+           UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        }
+          
+       
+    }
+    func saveImage(_ image: ARView.Image) {
+                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+           }
 }
 
 
@@ -296,8 +314,15 @@ extension ViewController: UIGestureRecognizerDelegate {
     func setupGestures() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.arView.addGestureRecognizer(tap)
+        let forceTouch = ForceTouchGestureRecognizer(target: self, action: #selector(forceTouchHandler))
+        self.arView.addGestureRecognizer(forceTouch)
         
-        
+    }
+    
+    @objc func forceTouchHandler(_ sender: ForceTouchGestureRecognizer) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        print("Force touch triggered")
+        toggleTorch()
     }
     
     
@@ -309,6 +334,7 @@ extension ViewController: UIGestureRecognizerDelegate {
         // let aligment: ARRaycastQuery.TargetAlignment = selectedItem == "door" ? .vertical : .horizontal
         //"hello! from \(self.multipeerHelp.myPeerID.displayName)"
         let data = self.multipeerHelp.myPeerID.displayName
+        
         if let myData = data
             .data(using: .unicode)
         {
@@ -390,22 +416,22 @@ extension ViewController: UIGestureRecognizerDelegate {
             if preloadedEntity == nil {
                 let entity = try! ModelEntity.loadModel(named: entityName)
                 
-        
-                 let model = ModelService.shared.getModel(with: entityName)
-                 
-                 if model?.width != nil {
-                     
-                     let newTransform = calculateRealSize(at: entity,by: entityName) // set model actual size
-                     entity.transform = newTransform
-                                   
-                 }
-               
+                
+                let model = ModelService.shared.getModel(with: entityName)
+                
+                if model?.width != nil {
+                    
+                    let newTransform = calculateRealSize(at: entity,by: entityName) // set model actual size
+                    entity.transform = newTransform
+                    
+                }
+                
                 entity.generateCollisionShapes(recursive: true)
                 arView.installGestures([.rotation, .translation], for: entity)
                 
             } else {
                 anchorEntity.addChild(preloadedEntity!)
-               
+                
                 anchorEntity.anchoring = AnchoringComponent(anchor)
                 anchorEntity.synchronization?.ownershipTransferMode = .autoAccept
                 

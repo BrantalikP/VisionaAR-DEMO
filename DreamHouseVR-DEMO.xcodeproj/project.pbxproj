@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7FCA3AD2A40D44F74C27FF03 /* Pods_DreamHouseVR_DEMO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6BBE459E22D137A84D89768 /* Pods_DreamHouseVR_DEMO.framework */; };
+		C10F877C248193FE00A58473 /* ForceTouchGestureRecognizer..swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F877B248193FE00A58473 /* ForceTouchGestureRecognizer..swift */; };
+		C10F877E24819D3200A58473 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F877D24819D3200A58473 /* Extensions.swift */; };
 		C11117822462BD5900F9A592 /* kancl-stul.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C11117812462BD5900F9A592 /* kancl-stul.usdz */; };
 		C11117842462BE7200F9A592 /* kancl-zidle-1.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C11117832462BE7200F9A592 /* kancl-zidle-1.usdz */; };
 		C11117862462BEE000F9A592 /* kancl-zidle-2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */; };
@@ -70,6 +72,8 @@
 
 /* Begin PBXFileReference section */
 		BAE7B9B861ACA0EE31900862 /* Pods-DreamHouseVR-DEMO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DreamHouseVR-DEMO.debug.xcconfig"; path = "Target Support Files/Pods-DreamHouseVR-DEMO/Pods-DreamHouseVR-DEMO.debug.xcconfig"; sourceTree = "<group>"; };
+		C10F877B248193FE00A58473 /* ForceTouchGestureRecognizer..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchGestureRecognizer..swift; sourceTree = "<group>"; };
+		C10F877D24819D3200A58473 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C11117812462BD5900F9A592 /* kancl-stul.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = "kancl-stul.usdz"; path = "../../../AR/DEMO KANCL/kancl-stul.usdz"; sourceTree = "<group>"; };
 		C11117832462BE7200F9A592 /* kancl-zidle-1.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = "kancl-zidle-1.usdz"; path = "../../../AR/DEMO KANCL/kancl-zidle-1.usdz"; sourceTree = "<group>"; };
 		C11117852462BEE000F9A592 /* kancl-zidle-2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = "kancl-zidle-2.usdz"; path = "../../../AR/DEMO KANCL/kancl-zidle-2.usdz"; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				C19BF65B24549478003188CC /* Constants.swift */,
+				C10F877B248193FE00A58473 /* ForceTouchGestureRecognizer..swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				C1CEB84524755AAB004483B1 /* ViewController */,
+				C10F877D24819D3200A58473 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -473,9 +479,11 @@
 				C1D35E272453838F00263643 /* MultipeerHelper.swift in Sources */,
 				C15AEE3324659451004B0F09 /* ColorsTableViewCell.swift in Sources */,
 				C19BF65424544353003188CC /* LibraryViewController.swift in Sources */,
+				C10F877E24819D3200A58473 /* Extensions.swift in Sources */,
 				C1D99D772471B8B5001FA511 /* ModelService.swift in Sources */,
 				C1FDD17F24532D70007C6E3B /* Experience.rcproject in Sources */,
 				C1D99D792471B96D001FA511 /* CategoryService.swift in Sources */,
+				C10F877C248193FE00A58473 /* ForceTouchGestureRecognizer..swift in Sources */,
 				C1D35E252453838F00263643 /* HasSynchronization+Extensions.swift in Sources */,
 				C1FD7600246A9242006CA55D /* Category.swift in Sources */,
 				C1CEB84724755AD1004483B1 /* ScreenRecord.swift in Sources */,

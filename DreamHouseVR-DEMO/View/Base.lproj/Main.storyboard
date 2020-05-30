@@ -98,7 +98,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9sP-Ih-Xxg">
-                                <rect key="frame" x="20" y="364" width="180" height="30"/>
+                                <rect key="frame" x="20" y="364" width="130" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVY-zT-XVW">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -112,23 +112,8 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2kq-il-I1B">
-                                        <rect key="frame" x="50" y="0.0" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0K8-u8-6zq"/>
-                                            <constraint firstAttribute="width" constant="30" id="kzX-Os-PjC"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="flashlight.off.fill" catalog="system">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="flashlightBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0U3-4R-Stg"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcQ-Y1-yJz">
-                                        <rect key="frame" x="100" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="50" y="0.0" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="MQQ-zT-zYy"/>
                                             <constraint firstAttribute="height" constant="30" id="U5w-vp-lq9"/>
@@ -138,9 +123,12 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cameraBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lKJ-zu-Bec"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avc-bn-pf5">
-                                        <rect key="frame" x="150" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="100" y="0.0" width="30" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="XcE-VI-aEG"/>
@@ -192,15 +180,15 @@
                             <constraint firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="UkW-Gb-YaG"/>
                             <constraint firstItem="GLz-ce-vFe" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="VYV-fP-OZE"/>
                             <constraint firstItem="uqo-n7-ppN" firstAttribute="centerX" secondItem="sdq-hV-VpC" secondAttribute="centerX" id="Vey-9v-wxw"/>
+                            <constraint firstItem="9sP-Ih-Xxg" firstAttribute="leading" secondItem="YhT-pd-Nf2" secondAttribute="leading" id="WO3-ag-Fxv"/>
                             <constraint firstItem="GLz-ce-vFe" firstAttribute="trailing" secondItem="WfL-8d-3n7" secondAttribute="trailing" id="cVc-yw-gqi"/>
+                            <constraint firstItem="9sP-Ih-Xxg" firstAttribute="bottom" secondItem="WfL-8d-3n7" secondAttribute="bottom" id="dsA-cK-DUO"/>
                             <constraint firstAttribute="bottom" secondItem="WfL-8d-3n7" secondAttribute="bottom" constant="20" id="fk5-Gl-eaO"/>
                             <constraint firstItem="uqo-n7-ppN" firstAttribute="top" secondItem="Dui-Gz-6uF" secondAttribute="top" constant="20" id="gwx-jT-b1G"/>
                             <constraint firstItem="WfL-8d-3n7" firstAttribute="leading" secondItem="QOC-mt-bob" secondAttribute="trailing" constant="15" id="nUG-x5-vXC"/>
                             <constraint firstItem="8bC-Xf-vdC" firstAttribute="leading" secondItem="sdq-hV-VpC" secondAttribute="leading" id="oYA-3r-llf"/>
                             <constraint firstItem="QOC-mt-bob" firstAttribute="centerY" secondItem="WfL-8d-3n7" secondAttribute="centerY" id="oxN-rX-cBa"/>
-                            <constraint firstItem="9sP-Ih-Xxg" firstAttribute="leading" secondItem="YhT-pd-Nf2" secondAttribute="leading" id="q5F-kM-QFW"/>
                             <constraint firstItem="Dui-Gz-6uF" firstAttribute="trailing" secondItem="WfL-8d-3n7" secondAttribute="trailing" id="srV-JU-sYD"/>
-                            <constraint firstItem="9sP-Ih-Xxg" firstAttribute="bottom" secondItem="WfL-8d-3n7" secondAttribute="bottom" id="sv7-L5-wdA"/>
                             <constraint firstItem="WfL-8d-3n7" firstAttribute="top" secondItem="dYy-jT-dpF" secondAttribute="bottom" constant="15" id="z2r-7l-wkg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dui-Gz-6uF"/>
@@ -315,7 +303,6 @@
         <image name="camera.fill" catalog="system" width="128" height="96"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="cube" catalog="system" width="128" height="124"/>
-        <image name="flashlight.off.fill" catalog="system" width="73" height="128"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.grid.4x3.fill" catalog="system" width="128" height="87"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
